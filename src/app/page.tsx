@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import HeroCarousel from "@/components/ui/Carousel";
+import HeroCarousel from "@/components/ui/HeroCarousel";
 import { carouselImages, toursData } from "@/lib/data";
 
 export default function Home() {
@@ -13,42 +13,37 @@ export default function Home() {
       <HeroCarousel images={carouselImages} />
 
       {/* Popular Tours Section */}
-      <section className="py-20 px-4 bg-black">
+      <section className="py-20 px-4 bg-[#011C40]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-white uppercase text-sm tracking-widest mb-3">
-              Наиболее востребованные туры
+              Find Your Perfect Experience
             </h2>
             <h3 className="text-white text-4xl font-bold uppercase mb-2">
-              ПОПУЛЯРНЫЕ ТУРЫ
+              POPULAR TOURS
             </h3>
-            <div className="w-24 h-0.5 bg-orange-500 mx-auto"></div>
+            <div className="w-24 h-0.5 bg-[#A7EBF2] mx-auto"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredTours.map((tour, index) => (
               <div key={tour.id} className="group relative overflow-hidden">
                 <div className="aspect-w-3 aspect-h-4 relative">
-                  <Image
-                    src={tour.coverImage}
-                    alt={tour.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                  <div className="w-full h-80 bg-[#26658C] rounded-lg"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#011C40]/80 to-transparent rounded-lg"></div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                     <h4 className="text-xl font-bold uppercase mb-2">
-                      ТУР №{index + 1}
+                      TOUR #{index + 1}
                     </h4>
                     <p className="text-sm text-white/70">
-                      THE MOST POPULAR TOURS
+                      Unforgettable experiences
                     </p>
                     <Link
                       href={`/tours/${tour.slug}`}
                       className="block mt-4 uppercase text-xs tracking-wider"
                     >
-                      Узнать подробнее →
+                      Learn More →
                     </Link>
                   </div>
                 </div>
@@ -59,16 +54,8 @@ export default function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="relative h-[600px]">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/cta-background.jpg"
-            alt="Travel Background"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30"></div>
-        </div>
+      <section className="relative h-[600px] bg-[#26658C]">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#011C40]/80 to-[#011C40]/30"></div>
 
         <div className="relative h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +72,7 @@ export default function Home() {
                 <div className="bg-white rounded-full p-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-orange-500"
+                    className="h-6 w-6 text-[#54ACBF]"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -96,7 +83,7 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <span>Смотреть видео</span>
+                <span>Watch Video</span>
               </button>
             </div>
           </div>
@@ -104,16 +91,16 @@ export default function Home() {
       </section>
 
       {/* Search Tours Section */}
-      <section className="py-16 px-4 bg-zinc-900">
+      <section className="py-16 px-4 bg-[#011C40]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-white text-4xl font-bold uppercase mb-2">
               FIND YOUR PERFECT TOUR
             </h2>
-            <div className="w-24 h-0.5 bg-orange-500 mx-auto"></div>
+            <div className="w-24 h-0.5 bg-[#A7EBF2] mx-auto"></div>
           </div>
 
-          <div className="bg-zinc-800 p-8 rounded-md">
+          <div className="bg-[#26658C] p-8 rounded-md">
             <form className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div>
                 <label
@@ -124,7 +111,7 @@ export default function Home() {
                 </label>
                 <select
                   id="destination"
-                  className="w-full bg-zinc-700 border border-zinc-600 text-white py-3 px-4 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full bg-[#023859] border border-[#26658C] text-white py-3 px-4 rounded-md focus:ring-[#A7EBF2] focus:border-[#A7EBF2]"
                 >
                   <option value="">Select Destination</option>
                   <option value="tokyo">Tokyo</option>
@@ -143,7 +130,7 @@ export default function Home() {
                 </label>
                 <select
                   id="tour-type"
-                  className="w-full bg-zinc-700 border border-zinc-600 text-white py-3 px-4 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full bg-[#023859] border border-[#26658C] text-white py-3 px-4 rounded-md focus:ring-[#A7EBF2] focus:border-[#A7EBF2]"
                 >
                   <option value="">Select Tour Type</option>
                   <option value="cultural">Cultural Tour</option>
@@ -160,14 +147,14 @@ export default function Home() {
                 <input
                   type="date"
                   id="date"
-                  className="w-full bg-zinc-700 border border-zinc-600 text-white py-3 px-4 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full bg-[#023859] border border-[#26658C] text-white py-3 px-4 rounded-md focus:ring-[#A7EBF2] focus:border-[#A7EBF2]"
                 />
               </div>
 
               <div className="flex items-end">
                 <button
                   type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-md transition duration-300 flex items-center justify-center"
+                  className="w-full bg-[#A7EBF2] hover:bg-[#54ACBF] text-[#011C40] py-3 px-6 rounded-md transition duration-300 flex items-center justify-center"
                 >
                   <span>Search Tours</span>
                   <svg

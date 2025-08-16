@@ -54,14 +54,9 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         {images.map((image) => (
           <SwiperSlide key={image.id}>
             <div className="relative w-full h-full">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40" />
+              {/* Placeholder div with gradient background instead of image */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#26658C] to-[#011C40]"></div>
+              <div className="absolute inset-0 bg-[#011C40]/40" />
               <div className="absolute inset-0 flex items-center">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="max-w-xl">
@@ -69,15 +64,15 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                       {image.title}
                     </h1>
                     <div className="flex items-center space-x-2 mb-8">
-                      <span className="text-orange-500 text-xl">●</span>
-                      <span className="w-12 h-0.5 bg-orange-500"></span>
+                      <span className="text-[#A7EBF2] text-xl">●</span>
+                      <span className="w-12 h-0.5 bg-[#A7EBF2]"></span>
                     </div>
                     <p className="text-white mb-8 opacity-90">
                       {image.subtitle}
                     </p>
                     <Link
                       href={image.buttonLink}
-                      className="inline-flex items-center space-x-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-sm transition duration-300"
+                      className="inline-flex items-center space-x-2 px-6 py-3 bg-[#A7EBF2] hover:bg-[#54ACBF] text-[#011C40] rounded-sm transition duration-300"
                     >
                       <span>{image.buttonText}</span>
                       <svg

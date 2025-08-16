@@ -1,3 +1,5 @@
+// Mock data for the tour agency website
+
 export type Tour = {
   id: string;
   slug: string;
