@@ -47,7 +47,7 @@ export type CarouselImage = {
 export const carouselImages: CarouselImage[] = [
   {
     id: 1,
-    src: "/images/hero/tokyo-gate.jpg",
+    src: "/tokyo1.jpg",
     alt: "Visit Tokyo",
     title: "VISIT TOKYO",
     subtitle:
@@ -57,7 +57,7 @@ export const carouselImages: CarouselImage[] = [
   },
   {
     id: 2,
-    src: "/images/hero/kyoto-temple.jpg",
+    src: "/kyoto1.jpg",
     alt: "Discover Kyoto",
     title: "DISCOVER KYOTO",
     subtitle:
@@ -67,7 +67,7 @@ export const carouselImages: CarouselImage[] = [
   },
   {
     id: 3,
-    src: "/images/hero/mount-fuji.jpg",
+    src: "/fuji1.jpg",
     alt: "Mount Fuji",
     title: "MOUNT FUJI",
     subtitle:

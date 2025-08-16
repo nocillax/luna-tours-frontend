@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Pagination, Autoplay, EffectFade } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
@@ -28,34 +28,40 @@ interface HeroCarouselProps {
 
 export default function HeroCarousel({ images }: HeroCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+
+  const goToSlide = (index: number) => {
+    if (swiperInstance) {
+      swiperInstance.slideTo(index);
+    }
+  };
 
   return (
     <div className="relative w-full h-screen">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
+        modules={[Pagination, Autoplay, EffectFade]}
         effect="fade"
         slidesPerView={1}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-          el: ".swiper-pagination",
-          renderBullet: function (index, className) {
-            return `<span class="${className}">
-              <span class="number">0${index + 1}</span>
-            </span>`;
-          },
-        }}
+        onSwiper={setSwiperInstance}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         className="h-full w-full"
       >
         {images.map((image) => (
           <SwiperSlide key={image.id}>
             <div className="relative w-full h-full">
-              {/* Placeholder div with gradient background instead of image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#26658C] to-[#011C40]"></div>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover"
+                priority
+                quality={90} // Increase quality from the default 75
+                sizes="100vw" // Tell Next.js this image takes the full viewport width
+              />
               <div className="absolute inset-0 bg-[#011C40]/40" />
               <div className="absolute inset-0 flex items-center">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,20 +102,59 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         ))}
       </Swiper>
 
-      {/* Custom pagination */}
-      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20">
-        <div className="swiper-pagination flex flex-col space-y-4"></div>
-      </div>
+      {/* Custom pagination with vertically centered active number and shifting list */}
+      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 h-60 flex items-center">
+        <div className="h-32 relative flex items-center">
+          {/* This container will have fixed height with absolutely positioned items that shift */}
+          <div className="relative h-full w-20">
+            {images.map((_, index) => {
+              const isActive = activeIndex === index;
 
-      {/* Slide counter */}
-      <div className="absolute left-8 bottom-8 text-white flex items-center space-x-4 z-20">
-        <span className="text-5xl font-bold">
-          {String(activeIndex + 1).padStart(2, "0")}
-        </span>
-        <div className="w-12 h-0.5 bg-white opacity-50"></div>
-        <span className="opacity-50">
-          {String(images.length).padStart(2, "0")}
-        </span>
+              // Position calculation - move the entire list to keep active in center
+              // First, center every item vertically
+              // Then offset based on index position relative to active index
+              const position = `absolute right-0 transform translate-y-${
+                (index - activeIndex) * 12
+              } ${isActive ? "translate-y-0" : ""}`;
+
+              return (
+                <div
+                  key={index}
+                  className={`transition-all duration-300 ${position}`}
+                  style={{
+                    top: "50%",
+                    transform: `translateY(-50%) translateY(${
+                      (index - activeIndex) * 3
+                    }rem)`,
+                    opacity: isActive
+                      ? 1
+                      : 0.4 + (1 / (Math.abs(index - activeIndex) + 1)) * 0.4,
+                  }}
+                >
+                  <button
+                    onClick={() => goToSlide(index)}
+                    className={`flex items-center ${
+                      isActive
+                        ? "text-white"
+                        : "text-white/40 hover:text-white/60"
+                    }`}
+                  >
+                    {isActive && (
+                      <div className="w-16 h-0.5 bg-[#A7EBF2] mr-3"></div>
+                    )}
+                    <span
+                      className={`font-bold ${
+                        isActive ? "text-5xl" : "text-sm"
+                      }`}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );

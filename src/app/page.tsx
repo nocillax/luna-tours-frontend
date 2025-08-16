@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import HeroCarousel from "@/components/ui/HeroCarousel";
+
 import { carouselImages, toursData } from "@/lib/data";
+import HeroCarousel from "@/components/ui/HeroCarousel";
 
 export default function Home() {
   // Display only featured tours on the homepage
