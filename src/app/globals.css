@@ -6,15 +6,22 @@
   --foreground: #171717;
 
   /* Earth mood palette */
-  /* --earth-darkest: #121912; Almost black with slight green tint */
-  --earth-darkest: #0f1309; /* Almost black with slight green tint */
-  --earth-dark: #1e2b1e; /* Dark forest green */
-  --earth-medium: #3a4b3a; /* Deep moss green */
-  --earth-accent: #5c7b56; /* Muted sage green */
-  --earth-light: #a7b498; /* Soft sage/moss */
-  --earth-highlight: #d6dfbc; /* Muted light green, like morning mist */
+  /* --earth-darkest: #0f1309;
+  --earth-dark: #1e2b1e;
+  --earth-medium: #3a4b3a;
+  --earth-accent: #5c7b56;
+  --earth-light: #a7b498;
+  --earth-highlight: #d6dfbc; */
   --earth-warm: #6b4d2c; /* Warm earth brown */
   --earth-glow: #a5937f; /* Soft warm accent for highlights */
+
+  /* Luna-Blue colors */
+  --earth-darkest: #0d060d;
+  --earth-dark: #282538;
+  --earth-medium: #463b49;
+  --earth-accent: #e5c2b8;
+  --earth-light: #cac0be;
+  --earth-highlight: #efeae7;
 
   /* Font family */
   --font-montserrat: "Montserrat", sans-serif;

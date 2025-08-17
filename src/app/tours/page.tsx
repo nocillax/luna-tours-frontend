@@ -68,7 +68,7 @@ export default function ToursPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/60 to-[var(--earth-darkest)]/95"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/60 to-[var(--earth-darkest)]/90"></div>
 
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center max-w-4xl mx-auto px-4">

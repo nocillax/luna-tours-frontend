@@ -541,7 +541,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-12 px-4 bg-[var(--earth-dark)]/10">
+      <section className="py-12 px-4 bg-[var(--earth-darkest)]/10">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-[var(--earth-highlight)] font-montserrat mb-8 text-center">
             Find Us
