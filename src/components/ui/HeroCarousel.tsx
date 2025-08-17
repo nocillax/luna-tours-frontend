@@ -81,7 +81,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                     </div>
 
                     {/* Fixed height for subtitle to maintain button positioning */}
-                    <p className="font-montserrat text-[var(--earth-light)] mb-10 text-lg md:text-xl max-w-2xl line-clamp-2 h-16 font-light">
+                    <p className="font-montserrat text-[var(--earth-highlight)] mb-10 text-lg md:text-xl max-w-2xl line-clamp-2 h-16 font-medium">
                       {image.subtitle}
                     </p>
 
