@@ -6,7 +6,8 @@
   --foreground: #171717;
 
   /* Earth mood palette */
-  --earth-darkest: #121912; /* Almost black with slight green tint */
+  /* --earth-darkest: #121912; Almost black with slight green tint */
+  --earth-darkest: #0f1309; /* Almost black with slight green tint */
   --earth-dark: #1e2b1e; /* Dark forest green */
   --earth-medium: #3a4b3a; /* Deep moss green */
   --earth-accent: #5c7b56; /* Muted sage green */
