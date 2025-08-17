@@ -175,7 +175,14 @@ export const toursData: Tour[] = [
         image: "/images/tours/tokyo-day5.jpg",
       },
     ],
-    locations: ["Shibuya", "Asakusa", "Shinjuku", "Harajuku", "Akihabara"],
+    locations: [
+      "Tokyo",
+      "Shibuya",
+      "Asakusa",
+      "Shinjuku",
+      "Harajuku",
+      "Akihabara",
+    ],
     featured: true,
     reviews: [
       {
@@ -259,7 +266,7 @@ export const toursData: Tour[] = [
         image: "/images/tours/kyoto-day4.jpg",
       },
     ],
-    locations: ["Gion", "Arashiyama", "Higashiyama", "Fushimi"],
+    locations: ["Kyoto", "Gion", "Arashiyama", "Higashiyama", "Fushimi"],
     featured: true,
     reviews: [
       {
@@ -338,6 +345,7 @@ export const toursData: Tour[] = [
       },
     ],
     locations: [
+      "Mount Fuji",
       "Lake Kawaguchi",
       "Aokigahara Forest",
       "Oshino Hakkai",
@@ -423,7 +431,13 @@ export const toursData: Tour[] = [
         image: "/images/tours/osaka-day3.jpg",
       },
     ],
-    locations: ["Dotonbori", "Kuromon Market", "Osaka Castle", "Umeda"],
+    locations: [
+      "Osaka",
+      "Dotonbori",
+      "Kuromon Market",
+      "Osaka Castle",
+      "Umeda",
+    ],
     featured: true,
     reviews: [
       {
