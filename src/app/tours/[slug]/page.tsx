@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { toursData } from "@/lib/data";
+import ItineraryDayItem from "@/components/ui/ItineraryDayItem";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 export default function TourDetailsPage() {
   const params = useParams();
@@ -107,6 +109,48 @@ export default function TourDetailsPage() {
     }
   };
 
+  // Add custom styles for Swiper
+  useEffect(() => {
+    // Inject custom styles for pagination bullets and navigation
+    const style = document.createElement("style");
+    style.innerHTML = `
+      .custom-pagination {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        z-index: 10;
+      }
+      
+      .custom-bullet {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--earth-light);
+        opacity: 0.5;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .custom-bullet-active {
+        opacity: 1;
+        background-color: var(--earth-accent);
+        transform: scale(1.2);
+      }
+      
+      .swiper-button-prev, .swiper-button-next {
+        display: flex !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   if (!tour) {
     return (
       <div className="min-h-screen bg-[var(--earth-darkest)] flex items-center justify-center">
@@ -130,39 +174,55 @@ export default function TourDetailsPage() {
 
   return (
     <div className="min-h-screen bg-[var(--earth-darkest)]">
-      {/* Image Gallery with Swiper */}
-      <div className="h-[70vh]">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 5000 }}
-          loop={true}
-          className="h-full w-full"
-        >
-          {tour.gallery.map((image, index) => (
-            <SwiperSlide key={index}>
-              <div className="relative h-full w-full">
-                <Image
-                  src={image}
-                  alt={`${tour.title} - image ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                />
-                {index === 0 && (
-                  <div className="absolute inset-0 flex items-center justify-center text-center">
-                    <div className="px-8 py-6 bg-[var(--earth-darkest)]/60 backdrop-blur-sm rounded-lg">
-                      <h1 className="text-4xl md:text-6xl font-bold text-[var(--earth-highlight)]">
-                        {tour.title}
-                      </h1>
-                    </div>
+      {/* Improved Image Gallery with Swiper */}
+      <div className="pt-16 bg-[var(--earth-darkest)]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="h-[50vh] md:h-[60vh] relative">
+            <Swiper
+              modules={[Navigation, Pagination, EffectFade, Autoplay]}
+              effect="fade"
+              slidesPerView={1}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              pagination={{
+                clickable: true,
+                el: ".custom-pagination",
+                bulletClass: "custom-bullet",
+                bulletActiveClass: "custom-bullet-active",
+              }}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              className="h-full w-full rounded-lg overflow-hidden"
+            >
+              {tour.gallery.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={image}
+                      alt={`${tour.title} - image ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      priority={index === 0}
+                      quality={90}
+                    />
                   </div>
-                )}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Custom navigation buttons */}
+            <div className="swiper-button-prev !w-12 !h-12 !rounded-full !bg-[var(--earth-darkest)]/50 hover:!bg-[var(--earth-darkest)] flex items-center justify-center cursor-pointer transition-all z-10 left-4 after:!text-[var(--earth-highlight)] after:!text-lg"></div>
+            <div className="swiper-button-next !w-12 !h-12 !rounded-full !bg-[var(--earth-darkest)]/50 hover:!bg-[var(--earth-darkest)] flex items-center justify-center cursor-pointer transition-all z-10 right-4 after:!text-[var(--earth-highlight)] after:!text-lg"></div>
+
+            {/* Custom pagination */}
+            <div className="custom-pagination absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-10"></div>
+          </div>
+        </div>
       </div>
 
       {/* Main content */}
@@ -275,14 +335,12 @@ export default function TourDetailsPage() {
 
             {/* Price and booking actions */}
             <div className="w-full lg:w-auto">
-              <div className="bg-[var(--earth-dark)]/30 p-6 rounded-lg border border-[var(--earth-medium)]/20">
+              <div className="bg-[var(--earth-dark)]/30 py-6 px-12 rounded-lg border border-[var(--earth-medium)]/20">
                 <div className="flex justify-between items-center mb-6">
-                  <span className="text-[var(--earth-light)]">
-                    Price per person
-                  </span>
                   <span className="text-3xl font-bold text-[var(--earth-highlight)]">
                     ${tour.price}
                   </span>
+                  <span className="text-[var(--earth-light)]">/person</span>
                 </div>
                 <div className="space-y-3">
                   <button
@@ -407,19 +465,19 @@ export default function TourDetailsPage() {
 
         {/* Content tabs */}
         <div className="mb-16">
-          <div className="flex overflow-x-auto border-b border-[var(--earth-medium)]/30 mb-8 scrollbar-hide">
+          <div className="flex flex-wrap gap-2 sm:gap-0 border-b border-[var(--earth-medium)]/30 mb-8">
             <button
-              className={`px-6 py-3 font-medium text-sm whitespace-nowrap ${
+              className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
                 activeTab === "about"
                   ? "text-[var(--earth-accent)] border-b-2 border-[var(--earth-accent)]"
                   : "text-[var(--earth-light)] hover:text-[var(--earth-highlight)]"
               }`}
               onClick={() => setActiveTab("about")}
             >
-              About This Tour
+              About
             </button>
             <button
-              className={`px-6 py-3 font-medium text-sm whitespace-nowrap ${
+              className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
                 activeTab === "itinerary"
                   ? "text-[var(--earth-accent)] border-b-2 border-[var(--earth-accent)]"
                   : "text-[var(--earth-light)] hover:text-[var(--earth-highlight)]"
@@ -429,7 +487,7 @@ export default function TourDetailsPage() {
               Itinerary
             </button>
             <button
-              className={`px-6 py-3 font-medium text-sm whitespace-nowrap ${
+              className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
                 activeTab === "services"
                   ? "text-[var(--earth-accent)] border-b-2 border-[var(--earth-accent)]"
                   : "text-[var(--earth-light)] hover:text-[var(--earth-highlight)]"
@@ -439,7 +497,7 @@ export default function TourDetailsPage() {
               Included/Excluded
             </button>
             <button
-              className={`px-6 py-3 font-medium text-sm whitespace-nowrap ${
+              className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
                 activeTab === "reviews"
                   ? "text-[var(--earth-accent)] border-b-2 border-[var(--earth-accent)]"
                   : "text-[var(--earth-light)] hover:text-[var(--earth-highlight)]"
@@ -527,55 +585,23 @@ export default function TourDetailsPage() {
             </div>
           )}
 
-          {/* Itinerary tab */}
+          {/* Itinerary tab - Complete Modern Redesign */}
+          {/* Itinerary tab - Complete Modern Redesign */}
           {activeTab === "itinerary" && (
             <div>
               <h2 className="text-2xl font-bold text-[var(--earth-light)] mb-8">
-                Tour Itinerary
+                Your Journey Day by Day
               </h2>
-              <div className="space-y-12">
+
+              <div className="space-y-10">
                 {tour.itinerary.map((day, index) => (
-                  <div
+                  <ItineraryDayItem
                     key={day.day}
-                    className="flex flex-col md:flex-row gap-8"
-                  >
-                    {/* Day number with vertical line */}
-                    <div className="flex flex-col items-center">
-                      <div className="w-16 h-16 rounded-full flex items-center justify-center bg-[var(--earth-dark)] border-2 border-[var(--earth-accent)] text-[var(--earth-accent)] text-xl font-bold">
-                        Day {day.day}
-                      </div>
-                      {index < tour.itinerary.length - 1 && (
-                        <div className="w-0.5 h-full bg-[var(--earth-accent)]/30 my-2"></div>
-                      )}
-                    </div>
-
-                    {/* Day content */}
-                    <div className="flex-1">
-                      <div className="bg-[var(--earth-dark)]/20 rounded-lg overflow-hidden">
-                        {/* Image (if available) */}
-                        {day.image && (
-                          <div className="relative h-60 w-full">
-                            <Image
-                              src={day.image}
-                              alt={day.title}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        )}
-
-                        {/* Content */}
-                        <div className="p-6">
-                          <h3 className="text-xl font-bold text-[var(--earth-light)] mb-3">
-                            {day.title}
-                          </h3>
-                          <p className="text-[var(--earth-light)]/80">
-                            {day.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    day={day}
+                    index={index}
+                    isLast={index === tour.itinerary.length - 1}
+                    locations={tour.locations}
+                  />
                 ))}
               </div>
             </div>

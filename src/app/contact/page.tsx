@@ -118,7 +118,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[var(--earth-darkest)]">
       {/* Hero Section */}
-      <section className="relative h-[40vh] overflow-hidden">
+      <section className="relative h-[50vh] overflow-hidden">
         <Image
           src="/contact/contact-hero.jpg" // You'll need to add this image
           alt="Contact Luna Tours"
