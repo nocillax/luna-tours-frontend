@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-
-import { carouselImages, toursData } from "@/lib/data";
 import HeroCarousel from "@/components/ui/HeroCarousel";
+import TourCard from "@/components/ui/TourCard";
+import { carouselImages, toursData } from "@/lib/data";
 
 export default function Home() {
   // Display only featured tours on the homepage
@@ -26,30 +26,31 @@ export default function Home() {
             <div className="w-24 h-0.5 bg-[#A7EBF2] mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredTours.map((tour, index) => (
-              <div key={tour.id} className="group relative overflow-hidden">
-                <div className="aspect-w-3 aspect-h-4 relative">
-                  <div className="w-full h-80 bg-[#26658C] rounded-lg"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#011C40]/80 to-transparent rounded-lg"></div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <h4 className="text-xl font-bold uppercase mb-2">
-                      TOUR #{index + 1}
-                    </h4>
-                    <p className="text-sm text-white/70">
-                      Unforgettable experiences
-                    </p>
-                    <Link
-                      href={`/tours/${tour.slug}`}
-                      className="block mt-4 uppercase text-xs tracking-wider"
-                    >
-                      Learn More →
-                    </Link>
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredTours.map((tour) => (
+              <TourCard key={tour.id} tour={tour} />
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/tours"
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-[#A7EBF2] hover:bg-[#54ACBF] text-[#011C40] rounded-sm transition duration-300"
+            >
+              <span>View All Tours</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>

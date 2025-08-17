@@ -35,6 +35,7 @@ export type Tour = {
 
 export type CarouselImage = {
   id: number;
+  slug: string;
   src: string;
   alt: string;
   title: string;
@@ -47,33 +48,47 @@ export type CarouselImage = {
 export const carouselImages: CarouselImage[] = [
   {
     id: 1,
+    slug: "tokyo",
     src: "/tokyo1.jpg",
     alt: "Visit Tokyo",
     title: "VISIT TOKYO",
     subtitle:
       "Experience the blend of tradition and modern innovation in Japan's vibrant capital.",
     buttonText: "Explore Tokyo",
-    buttonLink: "/tours/tokyo-explorer",
+    buttonLink: "/tours/tokyo-explorer", // want to make it move to tours/filter-tokyo
   },
   {
     id: 2,
+    slug: "kyoto",
     src: "/kyoto1.jpg",
     alt: "Discover Kyoto",
     title: "DISCOVER KYOTO",
     subtitle:
       "Immerse yourself in the cultural heart of Japan with ancient temples and serene gardens.",
     buttonText: "Explore Kyoto",
-    buttonLink: "/tours/kyoto-cultural-journey",
+    buttonLink: "/tours/kyoto-cultural-journey", // want to make it move to tours/filter-kyoto
   },
   {
     id: 3,
-    src: "/fuji1.jpg",
+    slug: "mount-fuji",
+    src: "/mount-fuji1.jpg",
     alt: "Mount Fuji",
     title: "MOUNT FUJI",
     subtitle:
       "Witness the majestic beauty of Japan's most iconic natural landmark.",
     buttonText: "Explore Mount Fuji",
-    buttonLink: "/tours/mount-fuji-adventure",
+    buttonLink: "/tours/mount-fuji-adventure", // want to make it move to tours/filter-fuji
+  },
+  {
+    id: 4,
+    slug: "osaka",
+    src: "/osaka1.jpg",
+    alt: "Experience Osaka",
+    title: "EXPERIENCE OSAKA",
+    subtitle:
+      "Dive into the culinary delights and vibrant nightlife of Japan's second-largest city.",
+    buttonText: "Explore Osaka",
+    buttonLink: "/tours/osaka-foodie-tour", // want to make it move to tours/filter-osaka
   },
 ];
 
@@ -103,12 +118,11 @@ export const toursData: Tour[] = [
     languages: ["English", "Japanese"],
     tourType: "City Tour",
     category: "City Exploration",
-    coverImage: "/images/tours/tokyo-skyline.jpg",
+    coverImage: "/tokyo1.jpg",
     gallery: [
-      "/images/tours/tokyo-temple.jpg",
-      "/images/tours/tokyo-street.jpg",
-      "/images/tours/tokyo-tower.jpg",
-      "/images/tours/tokyo-garden.jpg",
+      "/tokyo/tokyo-tour-1.jpg",
+      "/tokyo/tokyo-tour-2.jpg",
+      "/tokyo/tokyo-tour-3.jpg",
     ],
     includedServices: [
       "4 nights accommodation",
@@ -196,12 +210,11 @@ export const toursData: Tour[] = [
     languages: ["English", "Japanese"],
     tourType: "Cultural Tour",
     category: "Cultural Tours",
-    coverImage: "/images/tours/kyoto-main.jpg",
+    coverImage: "/kyoto1.jpg",
     gallery: [
-      "/images/tours/kyoto-temple.jpg",
-      "/images/tours/kyoto-garden.jpg",
-      "/images/tours/kyoto-geisha.jpg",
-      "/images/tours/kyoto-bamboo.jpg",
+      "/kyoto/kyoto-tour-1.jpg",
+      "/kyoto/kyoto-tour-2.jpg",
+      "/kyoto/kyoto-tour-3.jpg",
     ],
     includedServices: [
       "3 nights traditional ryokan accommodation",
@@ -281,12 +294,11 @@ export const toursData: Tour[] = [
     languages: ["English", "Japanese"],
     tourType: "Adventure Tour",
     category: "Natural Wonders",
-    coverImage: "/images/tours/fuji-main.jpg",
+    coverImage: "/mount-fuji1.jpg",
     gallery: [
-      "/images/tours/fuji-lake.jpg",
-      "/images/tours/fuji-hiking.jpg",
-      "/images/tours/fuji-view.jpg",
-      "/images/tours/fuji-onsen.jpg",
+      "/mount-fuji/mount-fuji-tour-1.jpg",
+      "/mount-fuji/mount-fuji-tour-2.jpg",
+      "/mount-fuji/mount-fuji-tour-3.jpg",
     ],
     includedServices: [
       "2 nights accommodation",
@@ -348,6 +360,87 @@ export const toursData: Tour[] = [
         comment:
           "Perfect balance of activity and relaxation. The onsen after hiking was heaven!",
         date: "2025-05-20",
+      },
+    ],
+  },
+  // Add this as a new item in the toursData array
+
+  {
+    id: "4",
+    slug: "osaka-food-adventure",
+    title: "Osaka Food Adventure",
+    shortDescription:
+      "Experience Japan's ultimate food destination with this culinary journey through Osaka.",
+    description:
+      "Known as 'Japan's Kitchen,' Osaka is a food lover's paradise. This 3-day tour takes you through the city's vibrant food scene, from street food stalls to Michelin-starred restaurants. Learn the art of Osaka cooking, visit local markets, and discover why this city is famous for its culinary creativity and 'kuidaore' (eat until you drop) culture. Between meals, explore Osaka's rich history and modern attractions.",
+    duration: "3 days, 2 nights",
+    price: 850,
+    groupSize: "2-8 people",
+    languages: ["English", "Japanese"],
+    tourType: "Food Tour",
+    category: "Food & Cuisine",
+    coverImage: "/osaka1.jpg",
+    gallery: [
+      "/osaka/osaka-tour-1.jpg",
+      "/osaka/osaka-tour-2.jpg",
+      "/osaka/osaka-tour-3.jpg",
+    ],
+    includedServices: [
+      "2 nights accommodation",
+      "Daily breakfast",
+      "5 food experiences/meals",
+      "Cooking class",
+      "Market tour",
+      "English-speaking food guide",
+      "Transportation in Osaka",
+    ],
+    excludedServices: [
+      "Transportation to/from Osaka",
+      "Travel insurance",
+      "Personal expenses",
+      "Additional meals not mentioned",
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & Street Food Tour",
+        description:
+          "Arrive in Osaka and check into your hotel. Evening guided tour through Dotonbori, sampling iconic Osaka street foods like takoyaki, okonomiyaki, and kushikatsu.",
+        image: "/images/tours/osaka-day1.jpg",
+      },
+      {
+        day: 2,
+        title: "Markets & Cooking Class",
+        description:
+          "Morning visit to Kuromon Market to discover fresh ingredients, followed by a hands-on cooking class to learn authentic Osaka recipes. Afternoon visit to Osaka Castle.",
+        image: "/images/tours/osaka-day2.jpg",
+      },
+      {
+        day: 3,
+        title: "Modern Osaka & Departure",
+        description:
+          "Explore modern Osaka with visits to Umeda Sky Building and shopping districts. Final gourmet lunch before departure.",
+        image: "/images/tours/osaka-day3.jpg",
+      },
+    ],
+    locations: ["Dotonbori", "Kuromon Market", "Osaka Castle", "Umeda"],
+    featured: true,
+    reviews: [
+      {
+        id: "401",
+        name: "Lisa Williams",
+        rating: 5,
+        comment:
+          "The food was incredible! I never knew there were so many varieties of Japanese cuisine beyond sushi. The cooking class was a highlight!",
+        date: "2025-02-18",
+      },
+      {
+        id: "402",
+        name: "Takeshi Yamada",
+        rating: 5,
+        comment:
+          "As a Japanese person who loves food, even I learned new things about Osaka cuisine. The guide was extremely knowledgeable.",
+        date: "2025-03-05",
       },
     ],
   },
