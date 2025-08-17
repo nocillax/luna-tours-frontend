@@ -62,23 +62,32 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                 quality={90} // Increase quality from the default 75
                 sizes="100vw" // Tell Next.js this image takes the full viewport width
               />
-              <div className="absolute inset-0 bg-[#011C40]/40" />
-              <div className="absolute inset-0 flex items-center">
+              {/* Enhanced gradient overlay that's darker at the bottom */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/35 via-[var(--earth-darkest)]/60 to-[var(--earth-darkest)]/95" />
+
+              <div className="absolute inset-x-0 bottom-0 h-3/4 flex flex-col justify-end pb-24">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="max-w-xl">
-                    <h1 className="text-7xl font-bold text-white mb-4">
+                  <div className="max-w-3xl">
+                    {/* Enhanced title with consistent height and Montserrat font */}
+                    <h1 className="font-montserrat text-6xl sm:text-7xl md:text-8xl font-extrabold text-[var(--earth-highlight)] mb-6 leading-tight line-clamp-2 uppercase tracking-tight">
                       {image.title}
                     </h1>
+
                     <div className="flex items-center space-x-2 mb-8">
-                      <span className="text-[#A7EBF2] text-xl">●</span>
-                      <span className="w-12 h-0.5 bg-[#A7EBF2]"></span>
+                      <span className="text-[var(--earth-accent)] text-xl">
+                        ●
+                      </span>
+                      <span className="w-16 h-1 bg-[var(--earth-accent)]"></span>
                     </div>
-                    <p className="text-white mb-8 opacity-90">
+
+                    {/* Fixed height for subtitle to maintain button positioning */}
+                    <p className="font-montserrat text-[var(--earth-light)] mb-10 text-lg md:text-xl max-w-2xl line-clamp-2 h-16 font-light">
                       {image.subtitle}
                     </p>
+
                     <Link
                       href={image.buttonLink}
-                      className="inline-flex items-center space-x-2 px-6 py-3 bg-[#A7EBF2] hover:bg-[#54ACBF] text-[#011C40] rounded-sm transition duration-300"
+                      className="font-montserrat inline-flex items-center space-x-3 px-8 py-4 bg-[var(--earth-accent)] hover:bg-[var(--earth-medium)] text-[var(--earth-darkest)] rounded-sm transition duration-300 font-bold text-lg"
                     >
                       <span>{image.buttonText}</span>
                       <svg
@@ -102,7 +111,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         ))}
       </Swiper>
 
-      {/* Custom pagination with vertically centered active number and shifting list */}
+      {/* Custom pagination with vertically centered active number and shifting list - keeping as is */}
       <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 h-60 flex items-center">
         <div className="h-32 relative flex items-center">
           {/* This container will have fixed height with absolutely positioned items that shift */}
@@ -133,14 +142,14 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                 >
                   <button
                     onClick={() => goToSlide(index)}
-                    className={`flex items-center ${
+                    className={`flex items-center font-montserrat ${
                       isActive
-                        ? "text-white"
-                        : "text-white/40 hover:text-white/60"
+                        ? "text-[var(--earth-highlight)]"
+                        : "text-[var(--earth-highlight)]/40 hover:text-[var(--earth-highlight)]/60"
                     }`}
                   >
                     {isActive && (
-                      <div className="w-16 h-0.5 bg-[#A7EBF2] mr-3"></div>
+                      <div className="w-16 h-0.5 bg-[var(--earth-accent)] mr-3"></div>
                     )}
                     <span
                       className={`font-bold ${

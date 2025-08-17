@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
 :root {
+  /* Base colors */
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Earth mood palette */
+  --earth-darkest: #121912; /* Almost black with slight green tint */
+  --earth-dark: #1e2b1e; /* Dark forest green */
+  --earth-medium: #3a4b3a; /* Deep moss green */
+  --earth-accent: #5c7b56; /* Muted sage green */
+  --earth-light: #a7b498; /* Soft sage/moss */
+  --earth-highlight: #d6dfbc; /* Muted light green, like morning mist */
+  --earth-warm: #6b4d2c; /* Warm earth brown */
+  --earth-glow: #a5937f; /* Soft warm accent for highlights */
+
+  /* Font family */
+  --font-montserrat: "Montserrat", sans-serif;
 }
 
 @theme inline {
@@ -14,8 +28,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--earth-darkest);
+    --foreground: var(--earth-highlight);
   }
 }
 

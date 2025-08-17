@@ -22,10 +22,10 @@ export default function TourCard({ tour }: TourCardProps) {
   return (
     <Link
       href={`/tours/${tour.slug}`}
-      className="group relative h-[420px] overflow-hidden rounded-lg shadow-lg hover:shadow-xl hover:shadow-[#A7EBF2]/30 transition-all duration-500"
+      className="group relative h-[420px] overflow-hidden rounded-lg shadow-lg hover:shadow-xl hover:shadow-[var(--earth-accent)]/20 transition-all duration-500"
     >
       {/* Background Image - Covers entire card */}
-      <div className="absolute inset-0 w-full h-full bg-[#26658C]">
+      <div className="absolute inset-0 w-full h-full bg-[var(--earth-medium)]">
         {(tour.gallery?.length > 0 || tour.coverImage) && (
           <Image
             src={tour.gallery?.length > 0 ? tour.gallery[0] : tour.coverImage}
@@ -38,11 +38,11 @@ export default function TourCard({ tour }: TourCardProps) {
       </div>
 
       {/* Gradient overlay for text visibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#011C40]/95 via-[#023859]/70 to-transparent transition-all duration-500 group-hover:from-[#011C40]/90 group-hover:via-[#023859]/60"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--earth-darkest)]/95 via-[var(--earth-dark)]/75 to-transparent transition-all duration-500 group-hover:from-[var(--earth-darkest)]/90 group-hover:via-[var(--earth-dark)]/60"></div>
 
       {/* Content */}
-      <div className="absolute bottom-0 w-full p-6 text-white">
-        <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-[#A7EBF2] transition-colors">
+      <div className="absolute bottom-0 w-full p-6 text-[var(--earth-highlight)]">
+        <h3 className="text-2xl font-bold mb-2 text-[var(--earth-highlight)] group-hover:text-[var(--earth-light)] transition-colors">
           {tour.title}
         </h3>
 
@@ -54,7 +54,7 @@ export default function TourCard({ tour }: TourCardProps) {
               xmlns="http://www.w3.org/2000/svg"
               className={`h-4 w-4 ${
                 star <= Math.round(averageRating)
-                  ? "text-[#A7EBF2]"
+                  ? "text-amber-400"
                   : "text-gray-500"
               }`}
               viewBox="0 0 20 20"
@@ -64,13 +64,13 @@ export default function TourCard({ tour }: TourCardProps) {
             </svg>
           ))}
           <span className="text-xs ml-2 opacity-90">
-            ({tour.reviews.length} reviews)
+            ({tour.reviews.length})
           </span>
         </div>
 
         {/* Tour info - Duration and Language */}
         <div className="flex justify-between items-center w-full gap-6 text-sm mb-3">
-          <div className="flex items-center text-[#A7EBF2]">
+          <div className="flex items-center text-[var(--earth-currentColor)]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 mr-1.5"
@@ -86,7 +86,7 @@ export default function TourCard({ tour }: TourCardProps) {
             {tour.duration}
           </div>
 
-          <div className="flex items-center text-[#A7EBF2]">
+          <div className="flex items-center text-[var(--earth-currentColor)]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 mr-1.5"
@@ -104,12 +104,16 @@ export default function TourCard({ tour }: TourCardProps) {
         </div>
 
         {/* Price row */}
-        <div className="flex justify-between items-center mt-4 pt-4 border-t border-[#26658C]/50">
+        <div className="flex justify-between items-center mt-4 pt-4 border-t border-[var(--earth-medium)]/50">
           <div className="flex items-baseline">
-            <span className="text-2xl font-bold text-white">${tour.price}</span>
-            <span className="text-sm ml-1 text-[#A7EBF2]/80">/person</span>
+            <span className="text-2xl font-bold text-[var(--earth-highlight)]">
+              ${tour.price}
+            </span>
+            <span className="text-sm ml-1 text-[var(--earth-light)]/80">
+              /person
+            </span>
           </div>
-          <div className="bg-[#A7EBF2] text-[#011C40] w-10 h-10 rounded-full flex items-center justify-center transform group-hover:translate-x-1 transition-all duration-300">
+          <div className="bg-[var(--earth-warm)] text-[var(--earth-highlight)] w-10 h-10 rounded-full flex items-center justify-center transform group-hover:translate-x-1 transition-all duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
