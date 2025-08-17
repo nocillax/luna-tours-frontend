@@ -120,7 +120,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                 sizes="100vw" // Tell Next.js this image takes the full viewport width
               />
               {/* Enhanced gradient overlay that's darker at the bottom */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/35 via-[var(--earth-darkest)]/60 to-[var(--earth-darkest)]/95" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/15 via-[var(--earth-darkest)]/40 to-[var(--earth-darkest)]/90" />
 
               <div className="absolute inset-x-0 bottom-0 h-3/4 flex flex-col justify-end pb-24">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">

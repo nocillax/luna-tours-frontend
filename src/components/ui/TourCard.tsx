@@ -113,7 +113,7 @@ export default function TourCard({ tour }: TourCardProps) {
               /person
             </span>
           </div>
-          <div className="bg-[var(--earth-warm)] text-[var(--earth-highlight)] w-10 h-10 rounded-full flex items-center justify-center transform group-hover:translate-x-1 transition-all duration-300">
+          <div className="bg-[var(--earth-accent)] text-[var(--earth-darkest)] w-10 h-10 rounded-full flex items-center justify-center transform group-hover:translate-x-1 transition-all duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
