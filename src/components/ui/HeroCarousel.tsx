@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -29,12 +29,69 @@ interface HeroCarouselProps {
 export default function HeroCarousel({ images }: HeroCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
   const goToSlide = (index: number) => {
     if (swiperInstance) {
       swiperInstance.slideTo(index);
     }
   };
+
+  // Reset refs array when images change
+  useEffect(() => {
+    titleRefs.current = titleRefs.current.slice(0, images.length);
+  }, [images]);
+
+  // Function to calculate text size and ensure consistent height
+  const adjustTitleHeight = () => {
+    // First pass: Find the tallest title height
+    let maxHeight = 0;
+    titleRefs.current.forEach((ref) => {
+      if (ref) {
+        // Reset any previous scaling to get true height
+        ref.style.fontSize = "";
+        const height = ref.scrollHeight;
+        if (height > maxHeight) {
+          maxHeight = height;
+        }
+      }
+    });
+
+    // Second pass: Set height for all titles and adjust font size if needed
+    titleRefs.current.forEach((ref) => {
+      if (ref) {
+        // Set fixed height to ensure alignment
+        ref.style.height = `${maxHeight}px`;
+
+        // Check if text overflows 2 lines and adjust font size if needed
+        const lineHeight = parseInt(window.getComputedStyle(ref).lineHeight);
+        const twoLinesHeight = lineHeight * 2;
+
+        if (ref.scrollHeight > twoLinesHeight) {
+          // Text overflows 2 lines, reduce font size
+          const scaleFactor = twoLinesHeight / ref.scrollHeight;
+          const currentSize = parseInt(window.getComputedStyle(ref).fontSize);
+          ref.style.fontSize = `${currentSize * scaleFactor}px`;
+        }
+      }
+    });
+  };
+
+  // Apply height adjustment when swiper updates or window resizes
+  useEffect(() => {
+    if (titleRefs.current.length > 0) {
+      adjustTitleHeight();
+
+      const handleResize = () => {
+        adjustTitleHeight();
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, [activeIndex, swiperInstance]);
 
   return (
     <div className="relative w-full h-screen">
@@ -50,7 +107,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         className="h-full w-full"
       >
-        {images.map((image) => (
+        {images.map((image, idx) => (
           <SwiperSlide key={image.id}>
             <div className="relative w-full h-full">
               <Image
@@ -68,10 +125,17 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
               <div className="absolute inset-x-0 bottom-0 h-3/4 flex flex-col justify-end pb-24">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="max-w-3xl">
-                    {/* Enhanced title with consistent height and Montserrat font */}
-                    <h1 className="font-montserrat text-6xl sm:text-7xl md:text-8xl font-extrabold text-[var(--earth-highlight)] mb-6 leading-tight line-clamp-2 uppercase tracking-tight">
-                      {image.title}
-                    </h1>
+                    {/* Title container with fixed height and alignment */}
+                    <div className="title-container min-h-[160px] flex flex-col justify-start">
+                      <h1
+                        ref={(el) => {
+                          titleRefs.current[idx] = el;
+                        }}
+                        className="font-montserrat text-6xl sm:text-7xl md:text-8xl font-extrabold text-[var(--earth-highlight)] mb-6 leading-tight uppercase tracking-tight overflow-hidden"
+                      >
+                        {image.title}
+                      </h1>
+                    </div>
 
                     <div className="flex items-center space-x-2 mb-8">
                       <span className="text-[var(--earth-accent)] text-xl">
