@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const TourNotFound: React.FC = () => {
+export default function TourNotFound() {
   return (
     <div className="min-h-screen bg-[var(--earth-darkest)] flex items-center justify-center">
       <div className="text-center">
@@ -20,6 +20,4 @@ const TourNotFound: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default TourNotFound;
+}

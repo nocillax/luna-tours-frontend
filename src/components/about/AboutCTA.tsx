@@ -1,6 +1,6 @@
-// src/components/about/AboutCTA.tsx
 import Link from "next/link";
 
+// call to action section for about page
 export default function AboutCTA() {
   return (
     <section className="py-20 px-4 relative overflow-hidden">
@@ -28,7 +28,7 @@ export default function AboutCTA() {
         </div>
       </div>
 
-      {/* Background Pattern */}
+      {/* Background Pattern; SVG path as it is a custom shape */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute right-0 bottom-0 transform translate-x-1/4 translate-y-1/4">
           <svg

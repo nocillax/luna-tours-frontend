@@ -1,5 +1,4 @@
 import React from "react";
-import { GetStaticProps } from "next";
 
 import ContactInfo from "@/components/contact/ContactInfo";
 import ContactForm from "@/components/contact/ContactForm";
@@ -7,39 +6,30 @@ import ContactMap from "@/components/contact/ContactMap";
 import ContactFAQ from "@/components/contact/ContactFAQ";
 import ContactHero from "@/components/contact/ContactHero";
 
-const ContactPage: React.FC = () => {
+export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[var(--earth-darkest)]">
-      {/* Hero Section */}
+      {/* banner at top */}
       <ContactHero />
 
-      {/* Contact Info + Form Section */}
+      {/* main contact stuffs */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Contact Information */}
+            {/* left column */}
             <ContactInfo />
 
-            {/* Contact Form */}
+            {/* right column - the form */}
             <ContactForm />
           </div>
         </div>
       </section>
 
-      {/* Map Section */}
+      {/* map embed */}
       <ContactMap />
 
-      {/* FAQ Section */}
+      {/* FAQs */}
       <ContactFAQ />
     </main>
   );
-};
-
-export default ContactPage;
-
-export const getStaticProps: GetStaticProps = async () => {
-  // In the future, you could fetch contact information from a CMS or API here
-  return {
-    props: {},
-  };
-};
+}

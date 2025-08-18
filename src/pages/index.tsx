@@ -7,7 +7,7 @@ import Newsletter from "@/components/home/Newsletter";
 import { carouselImages, toursData, Tour } from "@/lib/data";
 import { CarouselImage } from "@/lib/data";
 
-// Define types for our props
+// props type
 interface HomePageProps {
   featuredTours: Tour[];
   carouselImages: CarouselImage[];
@@ -19,38 +19,35 @@ export default function HomePage({
 }: HomePageProps) {
   return (
     <div className="bg-[var(--background)]">
-      {/* Hero Carousel */}
+      {/* carousel */}
       <HeroCarousel images={carouselImages} />
 
-      {/* Featured Tours Section */}
+      {/* featured tours */}
       <FeaturedTours featuredTours={featuredTours} />
 
-      {/* About Japan Section */}
+      {/* about japan */}
       <AboutJapan />
 
-      {/* Testimonials Section */}
+      {/* reviews */}
       <Testimonials />
 
-      {/* Newsletter Section */}
+      {/* signup */}
       <Newsletter />
     </div>
   );
 }
 
-// Add getStaticProps to fetch data at build time
+// get data at build time
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  // Get featured tours
-  const featuredToursCount = 4;
-  const featuredTours = toursData
-    .filter((tour) => tour.featured)
-    .slice(0, featuredToursCount);
+  // grab featured tours
+  const featuredTours = toursData.filter((tour) => tour.featured).slice(0, 4);
 
   return {
     props: {
       featuredTours,
       carouselImages,
     },
-    // Optionally add revalidation
-    revalidate: 60, // In seconds
+    // refresh every minute
+    revalidate: 60,
   };
 };

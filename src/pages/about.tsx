@@ -9,12 +9,25 @@ import AboutCTA from "@/components/about/AboutCTA";
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[var(--earth-darkest)]">
+      {/* banner */}
       <AboutHero />
+
+      {/* mission */}
       <AboutMission />
+
+      {/* company history */}
       <AboutJourney />
+
+      {/* team members */}
       <AboutTeam />
+
+      {/* values */}
       <AboutValues />
+
+      {/* customer reviews */}
       <AboutTestimonials />
+
+      {/* signup section */}
       <AboutCTA />
     </main>
   );

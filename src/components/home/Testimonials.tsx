@@ -7,6 +7,7 @@ interface Testimonial {
   initials: string;
 }
 
+// testimonial data
 const testimonials: Testimonial[] = [
   {
     quote:
@@ -31,13 +32,15 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const Testimonials: React.FC = () => {
+export default function Testimonials() {
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-montserrat font-extrabold mb-12 text-center">
           What Our Travelers Say
         </h2>
+
+        {/* testimonial cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
@@ -55,8 +58,12 @@ const Testimonials: React.FC = () => {
                   {testimonial.initials}
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-bold">{testimonial.author}</h4>
-                  <p className="text-sm text-gray-600">{testimonial.tour}</p>
+                  <p className="font-semibold text-[var(--earth-accent)]">
+                    {testimonial.author}
+                  </p>
+                  <p className="text-sm text-[var(--earth-light)]">
+                    {testimonial.tour}
+                  </p>
                 </div>
               </div>
             </div>
@@ -65,6 +72,4 @@ const Testimonials: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default Testimonials;
+}

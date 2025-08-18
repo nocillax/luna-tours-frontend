@@ -1,6 +1,6 @@
 import React from "react";
 
-const Newsletter: React.FC = () => {
+export default function Newsletter() {
   return (
     <section className="py-16 bg-[var(--earth-darkest)] bg-opacity-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,6 +12,8 @@ const Newsletter: React.FC = () => {
             Subscribe to our newsletter for travel tips, new tour announcements,
             and exclusive promotions.
           </p>
+
+          {/* email form */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <input
               type="email"
@@ -22,13 +24,12 @@ const Newsletter: React.FC = () => {
               Subscribe
             </button>
           </div>
-          <p className="mt-4 text-sm text-gray-600">
+
+          <p className="mt-4 text-sm text-[var(--earth-medium)]">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </div>
       </div>
     </section>
   );
-};
-
-export default Newsletter;
+}

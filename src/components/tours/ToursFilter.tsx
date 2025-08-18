@@ -1,4 +1,5 @@
 import React from "react";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 interface ToursFilterProps {
   activeCategory: string;
@@ -15,7 +16,7 @@ interface ToursFilterProps {
   tourCategories: string[];
 }
 
-const ToursFilter: React.FC<ToursFilterProps> = ({
+export default function ToursFilter({
   activeCategory,
   activeLocation,
   sortOption,
@@ -28,13 +29,13 @@ const ToursFilter: React.FC<ToursFilterProps> = ({
   setIsFilterMenuOpen,
   locationOptions,
   tourCategories,
-}) => {
+}: ToursFilterProps) {
   return (
     <section className="top-16 z-20 py-4 bg-[var(--earth-darkest)] border-b border-[var(--earth-medium)]/30 backdrop-filter backdrop-blur-sm bg-opacity-95">
       <div className="max-w-7xl mx-auto">
-        {/* Main controls container */}
+        {/* controls container */}
         <div className="flex flex-col space-y-4">
-          {/* First row: Categories in a compact grid layout */}
+          {/* category buttons */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-2 mb-8 w-full">
             <button
               onClick={() => setActiveCategory("All Tours")}
@@ -62,9 +63,9 @@ const ToursFilter: React.FC<ToursFilterProps> = ({
             ))}
           </div>
 
-          {/* Second row: Filter & Sort controls in a clean layout */}
+          {/* filter & sort controls */}
           <div className="flex flex-wrap items-center justify-between gap-3">
-            {/* Location filter dropdown */}
+            {/* location dropdown */}
             <div className="relative flex-grow sm:flex-grow-0">
               <button
                 onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}
@@ -77,22 +78,11 @@ const ToursFilter: React.FC<ToursFilterProps> = ({
                 <span className="truncate">
                   {activeLocation || "Filter by location"}
                 </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                <ChevronDownIcon
                   className={`h-4 w-4 flex-shrink-0 transition-transform ${
                     isFilterMenuOpen ? "rotate-180" : ""
                   }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
+                />
               </button>
 
               {isFilterMenuOpen && (
@@ -122,7 +112,7 @@ const ToursFilter: React.FC<ToursFilterProps> = ({
               )}
             </div>
 
-            {/* Sort options - custom dropdown to match filter style */}
+            {/* sort dropdown */}
             <div className="relative flex-grow sm:flex-grow-0">
               <button
                 onClick={() => setIsSortMenuOpen(!isSortMenuOpen)}
@@ -143,22 +133,11 @@ const ToursFilter: React.FC<ToursFilterProps> = ({
                     ? "Price: Low to High"
                     : "Price: High to Low"}
                 </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                <ChevronDownIcon
                   className={`h-4 w-4 flex-shrink-0 transition-transform ${
                     isSortMenuOpen ? "rotate-180" : ""
                   }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
+                />
               </button>
 
               {isSortMenuOpen && (
@@ -216,6 +195,4 @@ const ToursFilter: React.FC<ToursFilterProps> = ({
       </div>
     </section>
   );
-};
-
-export default ToursFilter;
+}

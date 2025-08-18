@@ -1,6 +1,7 @@
 import React from "react";
 import { Tour } from "@/lib/data";
 import TourReviewForm from "./TourReviewForm";
+import { StarIcon } from "@heroicons/react/24/solid";
 
 interface TourReviewsTabProps {
   tour: Tour;
@@ -10,19 +11,20 @@ interface TourReviewsTabProps {
   toggleReviewForm: () => void;
 }
 
-const TourReviewsTab: React.FC<TourReviewsTabProps> = ({
+export default function TourReviewsTab({
   tour,
   showReviewForm,
   setShowReviewForm,
   handleReviewSubmit,
   toggleReviewForm,
-}) => {
+}: TourReviewsTabProps) {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl font-bold text-[var(--earth-light)]">
           Guest Reviews
         </h2>
+        {/* add review button */}
         <button
           onClick={toggleReviewForm}
           className="px-5 py-2.5 bg-[var(--earth-accent)] text-[var(--earth-darkest)] rounded-md hover:bg-[var(--earth-accent)]/80 transition-all text-sm font-medium"
@@ -31,14 +33,14 @@ const TourReviewsTab: React.FC<TourReviewsTabProps> = ({
         </button>
       </div>
 
-      {/* Review form */}
+      {/* review form */}
       <TourReviewForm
         showReviewForm={showReviewForm}
         setShowReviewForm={setShowReviewForm}
         handleReviewSubmit={handleReviewSubmit}
       />
 
-      {/* Reviews list */}
+      {/* reviews list */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {tour.reviews.map((review) => (
           <div
@@ -51,17 +53,12 @@ const TourReviewsTab: React.FC<TourReviewsTabProps> = ({
               </h3>
               <div className="flex items-center">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <svg
+                  <StarIcon
                     key={star}
-                    xmlns="http://www.w3.org/2000/svg"
                     className={`h-4 w-4 ${
                       star <= review.rating ? "text-amber-400" : "text-gray-500"
                     }`}
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+                  />
                 ))}
               </div>
             </div>
@@ -80,6 +77,4 @@ const TourReviewsTab: React.FC<TourReviewsTabProps> = ({
       </div>
     </div>
   );
-};
-
-export default TourReviewsTab;
+}

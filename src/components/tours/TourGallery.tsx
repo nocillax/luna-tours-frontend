@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 
-// Import Swiper styles
+// swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,10 +14,10 @@ interface TourGalleryProps {
   title: string;
 }
 
-const TourGallery: React.FC<TourGalleryProps> = ({ gallery, title }) => {
-  // Add custom styles for Swiper
+export default function TourGallery({ gallery, title }: TourGalleryProps) {
+  // add custom swiper styles
   useEffect(() => {
-    // Inject custom styles for pagination bullets and navigation
+    // inject CSS for bullets and nav
     const style = document.createElement("style");
     style.innerHTML = `
       .custom-pagination {
@@ -32,7 +32,7 @@ const TourGallery: React.FC<TourGalleryProps> = ({ gallery, title }) => {
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background-color: var(--earth-light);
+        background-color: var(--earth-medium);
         opacity: 0.5;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -40,7 +40,7 @@ const TourGallery: React.FC<TourGalleryProps> = ({ gallery, title }) => {
       
       .custom-bullet-active {
         opacity: 1;
-        background-color: var(--earth-accent);
+        background-color: var(--earth-highlight);
         transform: scale(1.2);
       }
       
@@ -61,6 +61,7 @@ const TourGallery: React.FC<TourGalleryProps> = ({ gallery, title }) => {
     <div className="pt-16 bg-[var(--earth-darkest)]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="h-[50vh] md:h-[60vh] relative">
+          {/* gallery slider */}
           <Swiper
             modules={[Navigation, Pagination, EffectFade, Autoplay]}
             effect="fade"
@@ -98,16 +99,14 @@ const TourGallery: React.FC<TourGalleryProps> = ({ gallery, title }) => {
             ))}
           </Swiper>
 
-          {/* Custom navigation buttons */}
+          {/* prev/next buttons */}
           <div className="swiper-button-prev !w-12 !h-12 !rounded-full !bg-[var(--earth-darkest)]/50 hover:!bg-[var(--earth-darkest)] flex items-center justify-center cursor-pointer transition-all z-10 left-4 after:!text-[var(--earth-highlight)] after:!text-lg"></div>
           <div className="swiper-button-next !w-12 !h-12 !rounded-full !bg-[var(--earth-darkest)]/50 hover:!bg-[var(--earth-darkest)] flex items-center justify-center cursor-pointer transition-all z-10 right-4 after:!text-[var(--earth-highlight)] after:!text-lg"></div>
 
-          {/* Custom pagination */}
+          {/* dots */}
           <div className="custom-pagination absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-10"></div>
         </div>
       </div>
     </div>
   );
-};
-
-export default TourGallery;
+}

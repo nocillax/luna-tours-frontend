@@ -2,13 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const AboutJapan: React.FC = () => {
+export default function AboutJapan() {
   return (
     <section className="py-16 bg-[var(--earth-darkest)] bg-opacity-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ">
+          {/* text content */}
           <div className="order-2 lg:order-1">
-            <h2 className="text-3xl font-extrabold font-montserrat  mb-6">
+            <h2 className="text-3xl font-extrabold font-montserrat mb-6">
               Discover the Beauty of Japan
             </h2>
             <p className="mb-6 text-lg">
@@ -26,9 +27,11 @@ const AboutJapan: React.FC = () => {
               href="/about"
               className="inline-block bg-[var(--earth-accent)] hover:text-[var(--earth-accent)] hover:bg-[var(--earth-medium)] text-[var(--earth-darkest)] font-bold py-3 px-8 rounded-md transition duration-300"
             >
-              Learn More
+              Learn About Us
             </Link>
           </div>
+
+          {/* image */}
           <div className="order-1 lg:order-2">
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
@@ -43,6 +46,4 @@ const AboutJapan: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default AboutJapan;
+}

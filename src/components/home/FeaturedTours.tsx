@@ -7,18 +7,22 @@ interface FeaturedToursProps {
   featuredTours: Tour[];
 }
 
-const FeaturedTours: React.FC<FeaturedToursProps> = ({ featuredTours }) => {
+export default function FeaturedTours({ featuredTours }: FeaturedToursProps) {
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-montserrat font-extrabold mb-8 text-center">
           Popular Tours
         </h2>
+
+        {/* tour cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {featuredTours.map((tour) => (
             <TourCard key={tour.slug} tour={tour} />
           ))}
         </div>
+
+        {/* view all button */}
         <div className="mt-12 text-center">
           <Link
             href="/tours"
@@ -30,6 +34,4 @@ const FeaturedTours: React.FC<FeaturedToursProps> = ({ featuredTours }) => {
       </div>
     </section>
   );
-};
-
-export default FeaturedTours;
+}

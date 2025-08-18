@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+// hero banner for about page
 export default function AboutHero() {
   return (
     <section className="relative h-[40vh] overflow-hidden">

@@ -7,20 +7,22 @@ interface ToursListProps {
   resetFilters: () => void;
 }
 
-const ToursList: React.FC<ToursListProps> = ({
+export default function ToursList({
   filteredTours,
   resetFilters,
-}) => {
+}: ToursListProps) {
   return (
     <section className="py-12 px-4 bg-[var(--earth-darkest)]">
       <div className="max-w-7xl mx-auto">
         {filteredTours.length > 0 ? (
+          // tours grid
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredTours.map((tour) => (
               <TourCard key={tour.id} tour={tour} />
             ))}
           </div>
         ) : (
+          // no results message
           <div className="text-center py-16">
             <div className="text-[var(--earth-light)] mb-4">
               No tours found matching your criteria
@@ -36,6 +38,4 @@ const ToursList: React.FC<ToursListProps> = ({
       </div>
     </section>
   );
-};
-
-export default ToursList;
+}

@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-const ToursHero: React.FC = () => {
+export default function ToursHero() {
   return (
     <section className="relative h-[40vh] overflow-hidden">
+      {/* hero image */}
       <Image
         src="/japan-landscape.jpg"
         alt="Japanese tours"
@@ -11,8 +12,10 @@ const ToursHero: React.FC = () => {
         className="object-cover"
         priority
       />
+      {/* dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/60 to-[var(--earth-darkest)]/90"></div>
 
+      {/* hero content */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center max-w-4xl mx-auto px-4">
           <h1 className="text-5xl md:text-6xl font-extrabold text-[var(--earth-highlight)] font-montserrat mb-6 uppercase">
@@ -32,6 +35,4 @@ const ToursHero: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default ToursHero;
+}

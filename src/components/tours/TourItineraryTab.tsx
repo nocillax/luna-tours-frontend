@@ -6,13 +6,14 @@ interface TourItineraryTabProps {
   tour: Tour;
 }
 
-const TourItineraryTab: React.FC<TourItineraryTabProps> = ({ tour }) => {
+export default function TourItineraryTab({ tour }: TourItineraryTabProps) {
   return (
     <div>
       <h2 className="text-2xl font-bold text-[var(--earth-light)] mb-8">
         Your Journey Day by Day
       </h2>
 
+      {/* itinerary timeline */}
       <div className="space-y-10">
         {tour.itinerary.map((day, index) => (
           <ItineraryDayItem
@@ -20,12 +21,9 @@ const TourItineraryTab: React.FC<TourItineraryTabProps> = ({ tour }) => {
             day={day}
             index={index}
             isLast={index === tour.itinerary.length - 1}
-            locations={tour.locations}
           />
         ))}
       </div>
     </div>
   );
-};
-
-export default TourItineraryTab;
+}

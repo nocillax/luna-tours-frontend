@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactFAQ: React.FC = () => {
+export default function ContactFAQ() {
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
@@ -8,6 +8,7 @@ const ContactFAQ: React.FC = () => {
           Frequently Asked Questions
         </h2>
 
+        {/* faq items */}
         <div className="space-y-6">
           <div className="bg-[var(--earth-dark)]/20 rounded-lg p-6">
             <h3 className="text-lg font-semibold text-[var(--earth-accent)] font-montserrat mb-2">
@@ -45,6 +46,4 @@ const ContactFAQ: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default ContactFAQ;
+}

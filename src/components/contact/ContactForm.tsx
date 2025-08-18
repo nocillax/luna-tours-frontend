@@ -1,7 +1,9 @@
-import React, { useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
-const ContactForm: React.FC = () => {
-  // Form state
+// contact form with validation and submit handling
+export default function ContactForm() {
+  // form state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -9,7 +11,7 @@ const ContactForm: React.FC = () => {
     message: "",
   });
 
-  // Validation state
+  // validation state
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -17,11 +19,11 @@ const ContactForm: React.FC = () => {
     message: "",
   });
 
-  // Form submission state
+  // form submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Handle input changes
+  // handle input changes
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -32,7 +34,7 @@ const ContactForm: React.FC = () => {
       ...formData,
       [name]: value,
     });
-    // Clear errors when user types
+    // clear errors when user types
     if (errors[name as keyof typeof errors]) {
       setErrors({
         ...errors,
@@ -41,7 +43,7 @@ const ContactForm: React.FC = () => {
     }
   };
 
-  // Validate form
+  // validate form
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
@@ -51,20 +53,20 @@ const ContactForm: React.FC = () => {
       message: "",
     };
 
-    // Name validation
+    // name validation
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
       isValid = false;
     }
 
-    // Email validation
+    // email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
       newErrors.email = "Valid email is required";
       isValid = false;
     }
 
-    // Phone validation (basic)
+    // phone validation (basic)
     if (formData.phone.trim()) {
       const phoneRegex =
         /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
@@ -74,7 +76,7 @@ const ContactForm: React.FC = () => {
       }
     }
 
-    // Message validation
+    // message validation
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
       isValid = false;
@@ -87,13 +89,13 @@ const ContactForm: React.FC = () => {
     return isValid;
   };
 
-  // Handle form submission
+  // handle form submission
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
       setIsSubmitting(true);
 
-      // Simulate API call
+      // simulate API call
       setTimeout(() => {
         setIsSubmitting(false);
         setSubmitSuccess(true);
@@ -104,7 +106,7 @@ const ContactForm: React.FC = () => {
           message: "",
         });
 
-        // Reset success message after 5 seconds
+        // reset success message after 5 seconds
         setTimeout(() => {
           setSubmitSuccess(false);
         }, 5000);
@@ -122,24 +124,15 @@ const ContactForm: React.FC = () => {
         {/* Success Message */}
         {submitSuccess && (
           <div className="mb-6 bg-[var(--earth-accent)]/20 border border-[var(--earth-accent)]/50 rounded-md p-4 text-[var(--earth-highlight)]">
-            <div className="flex items-center">
-              <svg
-                className="h-5 w-5 text-[var(--earth-accent)] mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <p>
-                Thank you! Your message has been sent successfully. We'll get
-                back to you soon.
-              </p>
+            <div className="flex items-start">
+              <CheckCircleIcon className="h-5 w-5 text-[var(--earth-accent)] mr-3 mt-0.5" />
+              <div>
+                <h3 className="font-bold">Message Sent Successfully!</h3>
+                <p>
+                  Thank you for reaching out to us. A member of our team will
+                  get back to you within 24-48 hours.
+                </p>
+              </div>
             </div>
           </div>
         )}
@@ -149,9 +142,9 @@ const ContactForm: React.FC = () => {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-[var(--earth-light)] mb-1"
+              className="block text-[var(--earth-highlight)] font-medium mb-1"
             >
-              Your Name *
+              Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -165,7 +158,7 @@ const ContactForm: React.FC = () => {
               placeholder="John Doe"
             />
             {errors.name && (
-              <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
             )}
           </div>
 
@@ -173,9 +166,9 @@ const ContactForm: React.FC = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-[var(--earth-light)] mb-1"
+              className="block text-[var(--earth-highlight)] font-medium mb-1"
             >
-              Email Address *
+              Email <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
@@ -189,17 +182,17 @@ const ContactForm: React.FC = () => {
               placeholder="your@email.com"
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
             )}
           </div>
 
-          {/* Phone Field */}
+          {/* Phone Field (Optional) */}
           <div>
             <label
               htmlFor="phone"
-              className="block text-sm font-medium text-[var(--earth-light)] mb-1"
+              className="block text-[var(--earth-highlight)] font-medium mb-1"
             >
-              Phone Number (Optional)
+              Phone (Optional)
             </label>
             <input
               type="tel"
@@ -210,10 +203,10 @@ const ContactForm: React.FC = () => {
               className={`w-full px-4 py-3 bg-[var(--earth-dark)]/30 border ${
                 errors.phone ? "border-red-500" : "border-[var(--earth-medium)]"
               } rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--earth-accent)] text-[var(--earth-highlight)]`}
-              placeholder="+1 (555) 123-4567"
+              placeholder="+1 (123) 456-7890"
             />
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
             )}
           </div>
 
@@ -221,25 +214,25 @@ const ContactForm: React.FC = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-[var(--earth-light)] mb-1"
+              className="block text-[var(--earth-highlight)] font-medium mb-1"
             >
-              Message *
+              Message <span className="text-red-500">*</span>
             </label>
             <textarea
               id="message"
               name="message"
+              rows={5}
               value={formData.message}
               onChange={handleChange}
-              rows={11}
               className={`w-full px-4 py-3 bg-[var(--earth-dark)]/30 border ${
                 errors.message
                   ? "border-red-500"
                   : "border-[var(--earth-medium)]"
               } rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--earth-accent)] text-[var(--earth-highlight)]`}
-              placeholder="How can we help you?"
+              placeholder="Please tell us how we can help you..."
             ></textarea>
             {errors.message && (
-              <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
             )}
           </div>
 
@@ -248,41 +241,15 @@ const ContactForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[var(--earth-accent)] hover:bg-[var(--earth-medium)] text-[var(--earth-darkest)] font-bold py-3 px-6 rounded-md transition-colors font-montserrat flex items-center justify-center"
+              className={`w-full bg-[var(--earth-accent)] hover:bg-[var(--earth-medium)] text-[var(--earth-darkest)] font-bold py-3 px-4 rounded-sm transition-colors ${
+                isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+              }`}
             >
-              {isSubmitting ? (
-                <>
-                  <svg
-                    className="animate-spin -ml-1 mr-2 h-5 w-5 text-[var(--earth-darkest)]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Sending...
-                </>
-              ) : (
-                "Send Message"
-              )}
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </div>
         </form>
       </div>
     </div>
   );
-};
-
-export default ContactForm;
+}

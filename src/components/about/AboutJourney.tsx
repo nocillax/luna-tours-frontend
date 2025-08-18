@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+// timeline showing company history with images
 export default function AboutJourney() {
   return (
     <section className="py-20 px-4 bg-[var(--earth-darkest)]/20">
@@ -19,10 +20,9 @@ export default function AboutJourney() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-[var(--earth-darkest)]/30 flex items-center justify-center">
-                  <span className="text-4xl md:text-5xl font-extrabold font-montserrat text-white">
-                    2015
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--earth-darkest)]/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 bg-[var(--earth-accent)] text-[var(--earth-darkest)] px-3 py-1 font-bold">
+                  2015
                 </div>
               </div>
             </div>
@@ -54,10 +54,9 @@ export default function AboutJourney() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-[var(--earth-darkest)]/30 flex items-center justify-center">
-                  <span className="text-4xl md:text-5xl font-extrabold font-montserrat text-white">
-                    2018
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--earth-darkest)]/70 to-transparent"></div>
+                <div className="absolute bottom-4 right-4 bg-[var(--earth-accent)] text-[var(--earth-darkest)] px-3 py-1 font-bold">
+                  2018
                 </div>
               </div>
             </div>
@@ -89,10 +88,9 @@ export default function AboutJourney() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-[var(--earth-darkest)]/30 flex items-center justify-center">
-                  <span className="text-4xl md:text-5xl font-extrabold font-montserrat text-white">
-                    2020
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--earth-darkest)]/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 bg-[var(--earth-accent)] text-[var(--earth-darkest)] px-3 py-1 font-bold">
+                  2020
                 </div>
               </div>
             </div>
@@ -102,14 +100,12 @@ export default function AboutJourney() {
               </h3>
               <div className="h-1 w-16 bg-[var(--earth-accent)]/50 my-3"></div>
               <p className="text-[var(--earth-light)] leading-relaxed">
-                During global travel restrictions, we reimagined our approach by
-                developing virtual tours and online experiences, bringing
-                Japan's wonders to people's homes around the world. Our
-                innovative virtual tea ceremonies, digital walking tours, and
-                online cooking classes kept our connection with travelers alive
-                while creating new ways to experience Japanese culture. This
-                unexpected pivot expanded our audience and helped us refine our
-                storytelling approach.
+                When global travel paused, we pivoted to create virtual
+                experiences and digital content that allowed people to
+                experience Japan from their homes. This challenge sparked
+                innovation in how we present Japanese culture and connect people
+                to it, leading to online workshops with artisans, virtual tours,
+                and educational content that reached a global audience.
               </p>
             </div>
           </div>
@@ -124,27 +120,24 @@ export default function AboutJourney() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-[var(--earth-darkest)]/30 flex items-center justify-center">
-                  <span className="text-4xl md:text-5xl font-extrabold font-montserrat text-white">
-                    Today
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--earth-darkest)]/70 to-transparent"></div>
+                <div className="absolute bottom-4 right-4 bg-[var(--earth-accent)] text-[var(--earth-darkest)] px-3 py-1 font-bold">
+                  Today
                 </div>
               </div>
             </div>
             <div className="w-full md:w-2/3 text-left md:text-right">
               <h3 className="text-2xl font-bold text-[var(--earth-accent)] font-montserrat">
-                Authentic Adventures
+                Where We Are Now
               </h3>
               <div className="h-1 w-16 bg-[var(--earth-accent)]/50 my-3 ml-0 mr-auto md:ml-auto md:mr-0"></div>
               <p className="text-[var(--earth-light)] leading-relaxed">
-                Now a leading tour operator in Japan, Luna Tours offers
-                unparalleled experiences combining adventure, culture, and
-                sustainability, with a dedicated team of expert guides. We've
-                expanded to include specialized tours focusing on culinary
-                experiences, traditional crafts, hiking adventures, and historic
-                journeys. Our commitment to responsible tourism has earned us
-                recognition for our environmental initiatives and community
-                support programs throughout Japan.
+                Today, Luna Tours is recognized as a leader in experiential
+                travel in Japan. We've built a diverse team of passionate
+                experts who create unforgettable journeys. Our approach combines
+                cultural immersion, adventure, and sustainability. We continue
+                to innovate and expand our offerings while staying true to our
+                core values.
               </p>
             </div>
           </div>

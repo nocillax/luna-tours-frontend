@@ -1,11 +1,11 @@
 "use client";
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 // Import Swiper styles
 import "swiper/css";
@@ -26,29 +26,31 @@ interface HeroCarouselProps {
   images: CarouselImage[];
 }
 
+// hero carousel for homepage with image slides and custom pagination
 export default function HeroCarousel({ images }: HeroCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
+  // go to a specific slide when clicking on pagination numbers
   const goToSlide = (index: number) => {
     if (swiperInstance) {
       swiperInstance.slideTo(index);
     }
   };
 
-  // Reset refs array when images change
+  // reset refs array when images change
   useEffect(() => {
     titleRefs.current = titleRefs.current.slice(0, images.length);
   }, [images]);
 
-  // Function to calculate text size and ensure consistent height
+  // function to calculate text size and ensure consistent height
   const adjustTitleHeight = () => {
-    // First pass: Find the tallest title height
+    // first pass: find the tallest title height
     let maxHeight = 0;
     titleRefs.current.forEach((ref) => {
       if (ref) {
-        // Reset any previous scaling to get true height
+        // reset any previous scaling to get true height
         ref.style.fontSize = "";
         const height = ref.scrollHeight;
         if (height > maxHeight) {
@@ -57,18 +59,18 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
       }
     });
 
-    // Second pass: Set height for all titles and adjust font size if needed
+    // second pass: set height for all titles and adjust font size if needed
     titleRefs.current.forEach((ref) => {
       if (ref) {
-        // Set fixed height to ensure alignment
+        // set fixed height to ensure alignment
         ref.style.height = `${maxHeight}px`;
 
-        // Check if text overflows 2 lines and adjust font size if needed
+        // check if text overflows 2 lines and adjust font size if needed
         const lineHeight = parseInt(window.getComputedStyle(ref).lineHeight);
         const twoLinesHeight = lineHeight * 2;
 
         if (ref.scrollHeight > twoLinesHeight) {
-          // Text overflows 2 lines, reduce font size
+          // text overflows 2 lines, reduce font size
           const scaleFactor = twoLinesHeight / ref.scrollHeight;
           const currentSize = parseInt(window.getComputedStyle(ref).fontSize);
           ref.style.fontSize = `${currentSize * scaleFactor}px`;
@@ -77,7 +79,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
     });
   };
 
-  // Apply height adjustment when swiper updates or window resizes
+  // apply height adjustment when swiper updates or window resizes
   useEffect(() => {
     if (titleRefs.current.length > 0) {
       adjustTitleHeight();
@@ -119,7 +121,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                 quality={90} // Increase quality from the default 75
                 sizes="100vw" // Tell Next.js this image takes the full viewport width
               />
-              {/* Enhanced gradient overlay that's darker at the bottom */}
+              {/* Dark overlay for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/15 via-[var(--earth-darkest)]/40 to-[var(--earth-darkest)]/90" />
 
               <div className="absolute inset-x-0 bottom-0 h-3/4 flex flex-col justify-end pb-24">
@@ -154,18 +156,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                       className="font-montserrat inline-flex items-center space-x-3 px-8 py-4 bg-[var(--earth-accent)] hover:bg-[var(--earth-medium)] hover:text-[var(--earth-accent)] text-[var(--earth-darkest)] rounded-sm transition duration-300 font-bold text-lg"
                     >
                       <span>{image.buttonText}</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                      <ArrowRightIcon className="h-5 w-5" />
                     </Link>
                   </div>
                 </div>
@@ -175,7 +166,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         ))}
       </Swiper>
 
-      {/* Custom pagination with vertically centered active number and shifting list - keeping as is */}
+      {/* Custom pagination with vertically centered active number and shifting list */}
       <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 h-60 flex items-center">
         <div className="h-32 relative flex items-center">
           {/* This container will have fixed height with absolutely positioned items that shift */}
@@ -183,47 +174,34 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
             {images.map((_, index) => {
               const isActive = activeIndex === index;
 
-              // Position calculation - move the entire list to keep active in center
-              // First, center every item vertically
-              // Then offset based on index position relative to active index
-              const position = `absolute right-0 transform translate-y-${
-                (index - activeIndex) * 12
-              } ${isActive ? "translate-y-0" : ""}`;
+              // calculate position adjustments for pagination numbers
+              const position = index - activeIndex;
+              const yOffset = position * 40; // 40px spacing between numbers
+              const opacity = 1 - Math.min(0.6, Math.abs(position) * 0.2);
+              const scale = 1 - Math.min(0.4, Math.abs(position) * 0.15);
 
               return (
-                <div
+                <button
                   key={index}
-                  className={`transition-all duration-300 ${position}`}
+                  onClick={() => goToSlide(index)}
+                  className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 focus:outline-none`}
                   style={{
-                    top: "50%",
-                    transform: `translateY(-50%) translateY(${
-                      (index - activeIndex) * 3
-                    }rem)`,
-                    opacity: isActive
-                      ? 1
-                      : 0.4 + (1 / (Math.abs(index - activeIndex) + 1)) * 0.4,
+                    top: `50%`,
+                    marginTop: yOffset,
+                    opacity,
+                    transform: `translate(-50%, -50%) scale(${scale})`,
                   }}
                 >
-                  <button
-                    onClick={() => goToSlide(index)}
-                    className={`flex items-center font-montserrat ${
+                  <span
+                    className={`flex items-center justify-center w-10 h-10 text-lg ${
                       isActive
-                        ? "text-[var(--earth-highlight)]"
-                        : "text-[var(--earth-highlight)]/40 hover:text-[var(--earth-highlight)]/60"
+                        ? "text-[var(--earth-accent)] font-bold"
+                        : "text-white/70"
                     }`}
                   >
-                    {isActive && (
-                      <div className="w-16 h-0.5 bg-[var(--earth-accent)] mr-3"></div>
-                    )}
-                    <span
-                      className={`font-bold ${
-                        isActive ? "text-5xl" : "text-sm"
-                      }`}
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </button>
-                </div>
+                    {(index + 1).toString().padStart(2, "0")}
+                  </span>
+                </button>
               );
             })}
           </div>

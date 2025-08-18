@@ -22,41 +22,40 @@ export default function TourDetailsPage({
   tour,
   similarTours,
 }: TourDetailsPageProps) {
-  // States for form visibility and user interactions
+  // states for forms and tabs
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [activeTab, setActiveTab] = useState("about");
   const reviewFormRef = useRef<HTMLDivElement>(null);
   const bookingFormRef = useRef<HTMLDivElement>(null);
 
-  // Calculate average rating
+  // calc avg rating
   const averageRating =
     tour?.reviews && tour.reviews.length > 0
       ? tour.reviews.reduce((sum, review) => sum + review.rating, 0) /
         tour.reviews.length
       : 0;
 
-  // Handle form submission
+  // handle review form
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle the form submission with API
     alert("Thank you for your review! It will be posted after moderation.");
     setShowReviewForm(false);
   };
 
+  // handle booking form
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle the booking submission with API
     alert(
       "Thank you for your booking! We will contact you shortly to confirm."
     );
     setShowBookingForm(false);
   };
 
-  // Toggle forms
+  // toggle review form
   const toggleReviewForm = () => {
     setShowReviewForm(!showReviewForm);
-    // Scroll to form when opened
+    // scroll to form
     if (!showReviewForm && reviewFormRef.current) {
       setTimeout(() => {
         reviewFormRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -64,9 +63,10 @@ export default function TourDetailsPage({
     }
   };
 
+  // toggle booking form
   const toggleBookingForm = () => {
     setShowBookingForm(!showBookingForm);
-    // Scroll to form when opened
+    // scroll to form
     if (!showBookingForm && bookingFormRef.current) {
       setTimeout(() => {
         bookingFormRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -80,12 +80,12 @@ export default function TourDetailsPage({
 
   return (
     <div className="min-h-screen bg-[var(--earth-darkest)]">
-      {/* Improved Image Gallery with Swiper */}
+      {/* tour images */}
       <TourGallery gallery={tour.gallery} title={tour.title} />
 
-      {/* Main content */}
+      {/* main content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Header section with key info and booking actions */}
+        {/* tour header */}
         <div className="mb-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             <TourHeader tour={tour} averageRating={averageRating} />
@@ -96,18 +96,18 @@ export default function TourDetailsPage({
           </div>
         </div>
 
-        {/* Booking form - shows when "Book Now" is clicked */}
+        {/* booking form popup */}
         <TourBookingForm
           showBookingForm={showBookingForm}
           setShowBookingForm={setShowBookingForm}
           handleBookingSubmit={handleBookingSubmit}
         />
 
-        {/* Content tabs */}
+        {/* tabs section */}
         <div className="mb-16">
           <TourTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-          {/* Tab content */}
+          {/* tab content */}
           {activeTab === "about" && <TourAboutTab tour={tour} />}
           {activeTab === "itinerary" && <TourItineraryTab tour={tour} />}
           {activeTab === "services" && <TourServicesTab tour={tour} />}
@@ -122,7 +122,7 @@ export default function TourDetailsPage({
           )}
         </div>
 
-        {/* Similar Tours */}
+        {/* similar tours */}
         <SimilarTours tours={similarTours} />
       </div>
     </div>
@@ -130,14 +130,14 @@ export default function TourDetailsPage({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Generate paths for all tours
+  // get all tour slugs
   const paths = toursData.map((tour) => ({
     params: { slug: tour.slug },
   }));
 
   return {
     paths,
-    fallback: false, // Show 404 for non-existent tours
+    fallback: false, // 404 for bad slugs
   };
 };
 
@@ -146,10 +146,10 @@ export const getStaticProps: GetStaticProps<TourDetailsPageProps> = async ({
 }) => {
   const slug = params?.slug as string;
 
-  // Find the requested tour
+  // find tour by slug
   const tour = toursData.find((t) => t.slug === slug) || null;
 
-  // Find similar tours (excluding current one)
+  // get similar tours
   const similarTours = tour
     ? toursData
         .filter(
@@ -166,6 +166,6 @@ export const getStaticProps: GetStaticProps<TourDetailsPageProps> = async ({
       tour,
       similarTours,
     },
-    revalidate: 86400, // Revalidate every 24 hours
+    revalidate: 86400, // refresh daily
   };
 };

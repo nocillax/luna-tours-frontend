@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
-import "@/app/globals.css"; // Keep using your existing CSS
+import "@/app/globals.css"; // reusing css from app router; may change later
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -7,7 +7,7 @@ interface SimilarToursProps {
   tours: Tour[];
 }
 
-const SimilarTours: React.FC<SimilarToursProps> = ({ tours }) => {
+export default function SimilarTours({ tours }: SimilarToursProps) {
   return (
     <div className="mt-16 pt-12 border-t border-[var(--earth-medium)]/20">
       <h2 className="text-2xl font-bold text-[var(--earth-light)] mb-8">
@@ -20,7 +20,7 @@ const SimilarTours: React.FC<SimilarToursProps> = ({ tours }) => {
             key={similarTour.id}
             className="group relative h-[360px] overflow-hidden rounded-lg shadow-lg hover:shadow-xl hover:shadow-[var(--earth-accent)]/20 transition-all duration-500"
           >
-            {/* Background Image */}
+            {/* tour image */}
             <div className="absolute inset-0 w-full h-full bg-[var(--earth-medium)]">
               {(similarTour.gallery?.length > 0 || similarTour.coverImage) && (
                 <Image
@@ -37,10 +37,10 @@ const SimilarTours: React.FC<SimilarToursProps> = ({ tours }) => {
               )}
             </div>
 
-            {/* Gradient overlay */}
+            {/* dark overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--earth-darkest)]/95 via-[var(--earth-dark)]/75 to-transparent"></div>
 
-            {/* Content */}
+            {/* tour info */}
             <div className="absolute bottom-0 w-full p-6">
               <h3 className="text-xl font-bold text-[var(--earth-highlight)] group-hover:text-[var(--earth-light)] transition-colors">
                 {similarTour.title}
@@ -65,6 +65,4 @@ const SimilarTours: React.FC<SimilarToursProps> = ({ tours }) => {
       </div>
     </div>
   );
-};
-
-export default SimilarTours;
+}

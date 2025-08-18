@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+// team members section with images and bio
 export default function AboutTeam() {
   return (
     <section className="py-20 px-4">

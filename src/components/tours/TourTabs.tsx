@@ -5,9 +5,10 @@ interface TourTabsProps {
   setActiveTab: (tab: string) => void;
 }
 
-const TourTabs: React.FC<TourTabsProps> = ({ activeTab, setActiveTab }) => {
+export default function TourTabs({ activeTab, setActiveTab }: TourTabsProps) {
   return (
     <div className="flex flex-wrap gap-2 sm:gap-0 border-b border-[var(--earth-medium)]/30 mb-8">
+      {/* about tab */}
       <button
         className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
           activeTab === "about"
@@ -18,6 +19,8 @@ const TourTabs: React.FC<TourTabsProps> = ({ activeTab, setActiveTab }) => {
       >
         About
       </button>
+
+      {/* itinerary tab */}
       <button
         className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
           activeTab === "itinerary"
@@ -28,6 +31,8 @@ const TourTabs: React.FC<TourTabsProps> = ({ activeTab, setActiveTab }) => {
       >
         Itinerary
       </button>
+
+      {/* services tab */}
       <button
         className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
           activeTab === "services"
@@ -38,6 +43,8 @@ const TourTabs: React.FC<TourTabsProps> = ({ activeTab, setActiveTab }) => {
       >
         Included/Excluded
       </button>
+
+      {/* reviews tab */}
       <button
         className={`px-4 sm:px-6 py-3 font-medium text-sm whitespace-nowrap flex-grow sm:flex-grow-0 ${
           activeTab === "reviews"
@@ -50,6 +57,4 @@ const TourTabs: React.FC<TourTabsProps> = ({ activeTab, setActiveTab }) => {
       </button>
     </div>
   );
-};
-
-export default TourTabs;
+}

@@ -7,17 +7,17 @@ import ToursList from "@/components/tours/ToursList";
 import ToursCTA from "@/components/tours/ToursCTA";
 import { toursData, tourCategories, Tour } from "@/lib/data";
 
-// Props type
+// props type
 interface ToursPageProps {
   tours: Tour[];
   categories: string[];
 }
 
-// Location options derived from tour data
+// locations from data
 const locationOptions = ["Tokyo", "Kyoto", "Osaka", "Mount Fuji"];
 
 export default function ToursPage({ tours, categories }: ToursPageProps) {
-  // State for filtering and sorting
+  // filters state
   const [activeCategory, setActiveCategory] = useState<string>("All Tours");
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState<string>("default");
@@ -26,7 +26,7 @@ export default function ToursPage({ tours, categories }: ToursPageProps) {
   const [filteredTours, setFilteredTours] = useState(tours);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  // Reset filters function
+  // reset all filters
   const resetFilters = () => {
     setActiveCategory("All Tours");
     setActiveLocation(null);
@@ -34,11 +34,11 @@ export default function ToursPage({ tours, categories }: ToursPageProps) {
     setSearchTerm("");
   };
 
-  // Apply filters and sorting whenever dependencies change
+  // filter and sort tours
   useEffect(() => {
     let result = [...tours];
 
-    // Apply search filter if there's a search term
+    // search filter
     if (searchTerm) {
       const lowerCaseSearchTerm = searchTerm.toLowerCase();
       result = result.filter(
@@ -52,12 +52,12 @@ export default function ToursPage({ tours, categories }: ToursPageProps) {
       );
     }
 
-    // Apply category filter
+    // category filter
     if (activeCategory !== "All Tours") {
       result = result.filter((tour) => tour.category === activeCategory);
     }
 
-    // Apply location filter
+    // location filter
     if (activeLocation) {
       result = result.filter((tour) =>
         tour.locations.some((loc) =>
@@ -66,7 +66,7 @@ export default function ToursPage({ tours, categories }: ToursPageProps) {
       );
     }
 
-    // Apply sorting
+    // sort options
     switch (sortOption) {
       case "a-z":
         result.sort((a, b) => a.title.localeCompare(b.title));
@@ -81,7 +81,7 @@ export default function ToursPage({ tours, categories }: ToursPageProps) {
         result.sort((a, b) => b.price - a.price);
         break;
       default:
-        // Keep default order
+        // default sorting
         break;
     }
 
@@ -90,21 +90,20 @@ export default function ToursPage({ tours, categories }: ToursPageProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* hero banner */}
       <ToursHero />
-
-      {/* Filter and Sort Controls */}
+      {/* filters section */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto">
-          {/* Main controls container */}
+          {/* controls container */}
           <div className="flex flex-col space-y-4">
-            {/* Search component */}
+            {/* search box */}
             <ToursSearch
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
 
-            {/* Filter components */}
+            {/* filters and sorting */}
             <ToursFilter
               activeCategory={activeCategory}
               activeLocation={activeLocation}
@@ -122,24 +121,22 @@ export default function ToursPage({ tours, categories }: ToursPageProps) {
           </div>
         </div>
       </section>
-
-      {/* Tours Grid */}
+      {/* tours list */}
       <ToursList filteredTours={filteredTours} resetFilters={resetFilters} />
-
-      {/* Newsletter/CTA Section */}
+      {/* sign up */}
       <ToursCTA />
     </div>
   );
 }
 
+// get data at build time
 export const getStaticProps: GetStaticProps = async () => {
-  // In a real app, this would fetch data from an API
   return {
     props: {
       tours: toursData,
       categories: tourCategories,
     },
-    // Revalidate every hour
+    // update every hour
     revalidate: 3600,
   };
 };

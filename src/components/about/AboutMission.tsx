@@ -1,3 +1,4 @@
+// company mission statement section
 export default function AboutMission() {
   return (
     <section className="py-20 px-4">
