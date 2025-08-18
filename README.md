@@ -2,7 +2,7 @@
 
 Luna Tours is a responsive travel website showcasing immersive tour packages across Japan — from the vibrant streets of Tokyo to the serene temples of Kyoto and the scenic beauty of Mount Fuji.
 
-![Luna Tours Banner](/public/japan-landscape.jpg)
+![Luna Tours Banner](/public/images/japan-landscape.jpg)
 
 ---
 
