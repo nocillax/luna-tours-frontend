@@ -31,7 +31,8 @@
     "src/app/page.tsx.bak",
     "src/app/contact/page.tsx.bak",
     "src/app/about/page.tsx.bak",
-    "src/app/tours/page.tsx.bak"
+    "src/app/tours/page.tsx.bak",
+    "src/app/tours/[slug]/page.tsx.bak"
   ],
   "exclude": ["node_modules"]
 }
