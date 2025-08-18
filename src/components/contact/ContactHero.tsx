@@ -1,30 +1,36 @@
+import React from "react";
 import Image from "next/image";
 
-interface ContactHeroProps {
-  imageUrl: string;
-  title: string;
-  subtitle: string;
-}
-
-export default function ContactHero({
-  imageUrl,
-  title,
-  subtitle,
-}: ContactHeroProps) {
+const ContactHero: React.FC = () => {
   return (
-    <div className="relative h-[40vh] min-h-[300px] bg-black">
+    <section className="relative h-[40vh] overflow-hidden">
       <Image
-        src={imageUrl}
-        alt={title}
+        src="/contact/contact-hero.jpg"
+        alt="Contact Luna Tours"
         fill
-        className="object-cover opacity-70"
+        className="object-cover"
+        priority
       />
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
-        <h1 className="text-4xl md:text-5xl font-findel mb-4 text-center">
-          {title}
-        </h1>
-        <p className="text-xl max-w-2xl text-center px-4">{subtitle}</p>
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--earth-darkest)]/60 to-[var(--earth-darkest)]/90"></div>
+
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-center max-w-4xl mx-auto px-4">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[var(--earth-highlight)] font-montserrat mb-6 uppercase">
+            Contact Us
+          </h1>
+          <div className="flex items-center justify-center space-x-2 mb-8">
+            <span className="w-16 h-1 bg-[var(--earth-accent)]"></span>
+            <span className="text-[var(--earth-accent)] text-xl">●</span>
+            <span className="w-16 h-1 bg-[var(--earth-accent)]"></span>
+          </div>
+          <p className="text-xl text-[var(--earth-light)] max-w-2xl mx-auto font-montserrat">
+            We'd love to hear from you. Reach out and start your journey with
+            Luna Tours.
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default ContactHero;
