@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 type CarouselImage = {
   id: number;
@@ -166,42 +166,56 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         ))}
       </Swiper>
 
-      {/* Custom pagination with vertically centered active number and shifting list */}
+      {/* custom pagination with vertically centered active number and list shifting*/}
       <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 h-60 flex items-center">
         <div className="h-32 relative flex items-center">
-          {/* This container will have fixed height with absolutely positioned items that shift */}
+          {/* This container has a fixed height with absolutely positioned items that shift */}
           <div className="relative h-full w-20">
             {images.map((_, index) => {
               const isActive = activeIndex === index;
 
               // calculate position adjustments for pagination numbers
-              const position = index - activeIndex;
-              const yOffset = position * 40; // 40px spacing between numbers
-              const opacity = 1 - Math.min(0.6, Math.abs(position) * 0.2);
-              const scale = 1 - Math.min(0.4, Math.abs(position) * 0.15);
+              // move the entire list to keep active in center
+              // First, center every item vertically
+              // Then offset based on index position relative to active index
+              const position = `absolute right-0 transform translate-y-${
+                (index - activeIndex) * 12
+              } ${isActive ? "translate-y-0" : ""}`;
 
               return (
-                <button
+                <div
                   key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 focus:outline-none`}
+                  className={`transition-all duration-300 ${position}`}
                   style={{
-                    top: `50%`,
-                    marginTop: yOffset,
-                    opacity,
-                    transform: `translate(-50%, -50%) scale(${scale})`,
+                    top: "50%",
+                    transform: `translateY(-50%) translateY(${
+                      (index - activeIndex) * 3
+                    }rem)`,
+                    opacity: isActive
+                      ? 1
+                      : 0.4 + (1 / (Math.abs(index - activeIndex) + 1)) * 0.4,
                   }}
                 >
-                  <span
-                    className={`flex items-center justify-center w-10 h-10 text-lg ${
+                  <button
+                    onClick={() => goToSlide(index)}
+                    className={`flex items-center font-montserrat ${
                       isActive
-                        ? "text-[var(--earth-accent)] font-bold"
-                        : "text-white/70"
+                        ? "text-[var(--earth-highlight)]"
+                        : "text-[var(--earth-highlight)]/40 hover:text-[var(--earth-highlight)]/60"
                     }`}
                   >
-                    {(index + 1).toString().padStart(2, "0")}
-                  </span>
-                </button>
+                    {isActive && (
+                      <div className="w-16 h-0.5 bg-[var(--earth-accent)] mr-3"></div>
+                    )}
+                    <span
+                      className={`font-bold ${
+                        isActive ? "text-5xl" : "text-sm"
+                      }`}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </button>
+                </div>
               );
             })}
           </div>
