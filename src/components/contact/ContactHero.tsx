@@ -6,7 +6,7 @@ export default function ContactHero() {
     <section className="relative h-[40vh] overflow-hidden">
       {/* hero image */}
       <Image
-        src="/contact/contact-hero.jpg"
+        src="/images/contact/contact-hero.jpg"
         alt="Contact Luna Tours"
         fill
         className="object-cover"

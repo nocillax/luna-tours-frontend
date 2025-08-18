@@ -15,7 +15,7 @@ export default function AboutJourney() {
             <div className="w-full md:w-1/3">
               <div className="relative overflow-hidden rounded-lg shadow-lg aspect-square md:aspect-video w-full">
                 <Image
-                  src="/about/timeline-1.jpg"
+                  src="/images/about/timeline-1.jpg"
                   alt="Luna Tours founding"
                   fill
                   className="object-cover"
@@ -49,7 +49,7 @@ export default function AboutJourney() {
             <div className="w-full md:w-1/3">
               <div className="relative overflow-hidden rounded-lg shadow-lg aspect-square md:aspect-video w-full">
                 <Image
-                  src="/about/timeline-2.jpg"
+                  src="/images/about/timeline-2.jpg"
                   alt="Luna Tours expansion"
                   fill
                   className="object-cover"
@@ -83,7 +83,7 @@ export default function AboutJourney() {
             <div className="w-full md:w-1/3">
               <div className="relative overflow-hidden rounded-lg shadow-lg aspect-square md:aspect-video w-full">
                 <Image
-                  src="/about/timeline-3.png"
+                  src="/images/about/timeline-3.png"
                   alt="Luna Tours virtual experiences"
                   fill
                   className="object-cover"
@@ -115,7 +115,7 @@ export default function AboutJourney() {
             <div className="w-full md:w-1/3">
               <div className="relative overflow-hidden rounded-lg shadow-lg aspect-square md:aspect-video w-full">
                 <Image
-                  src="/about/timeline-4.jpg"
+                  src="/images/about/timeline-4.jpg"
                   alt="Luna Tours today"
                   fill
                   className="object-cover"

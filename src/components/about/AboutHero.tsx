@@ -5,7 +5,7 @@ export default function AboutHero() {
   return (
     <section className="relative h-[40vh] overflow-hidden">
       <Image
-        src="/about/about-hero.jpg"
+        src="/images/about/about-hero.jpg"
         alt="Luna Tours team exploring a forest"
         fill
         className="object-cover"

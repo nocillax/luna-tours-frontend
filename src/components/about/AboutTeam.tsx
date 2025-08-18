@@ -14,7 +14,7 @@ export default function AboutTeam() {
           <div className="bg-[var(--earth-dark)]/20 rounded-lg overflow-hidden group">
             <div className="relative h-80">
               <Image
-                src="/about/team-1.jpg"
+                src="/images/about/team-1.jpg"
                 alt="Dennis Hale - Founder & CEO"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -37,7 +37,7 @@ export default function AboutTeam() {
           <div className="bg-[var(--earth-dark)]/20 rounded-lg overflow-hidden group">
             <div className="relative h-80">
               <Image
-                src="/about/team-2.jpg"
+                src="/images/about/team-2.jpg"
                 alt="Jessica Austin - Head Guide"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -60,7 +60,7 @@ export default function AboutTeam() {
           <div className="bg-[var(--earth-dark)]/20 rounded-lg overflow-hidden group">
             <div className="relative h-80">
               <Image
-                src="/about/team-3.jpg"
+                src="/images/about/team-3.jpg"
                 alt="Mei Nakamura - Cultural Experience Director"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

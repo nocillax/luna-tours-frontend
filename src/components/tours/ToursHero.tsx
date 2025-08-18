@@ -6,7 +6,7 @@ export default function ToursHero() {
     <section className="relative h-[40vh] overflow-hidden">
       {/* hero image */}
       <Image
-        src="/japan-landscape.jpg"
+        src="/images/japan-landscape.jpg"
         alt="Japanese tours"
         fill
         className="object-cover"
