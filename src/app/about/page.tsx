@@ -18,7 +18,6 @@ export default function AboutPage() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center max-w-4xl mx-auto px-4">
             <h1 className="text-5xl md:text-6xl font-extrabold text-[var(--earth-highlight)] font-montserrat mb-6 uppercase">
-              {" "}
               Our Story
             </h1>
             <div className="flex items-center justify-center space-x-2 mb-8">

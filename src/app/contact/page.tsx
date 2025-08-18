@@ -120,7 +120,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] overflow-hidden">
         <Image
-          src="/contact/contact-hero.jpg" // You'll need to add this image
+          src="/images/contact/contact-hero.jpg" // You'll need to add this image
           alt="Contact Luna Tours"
           fill
           className="object-cover"

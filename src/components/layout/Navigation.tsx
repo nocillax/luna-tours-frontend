@@ -40,9 +40,15 @@ export default function Navigation() {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
               <span className="text-[var(--earth-accent)] text-xl font-bold mr-1">
-                ●
+                <Image
+                  src="/logo/luna-light.svg"
+                  alt="Luna Logo"
+                  width={24}
+                  height={24}
+                  className="mr-1"
+                />
               </span>
-              <span className="text-[var(--earth-highlight)] text-xl font-bold uppercase tracking-wider">
+              <span className="text-[var(--earth-highlight)] text-xl font-findel font-bold uppercase tracking-wider">
                 LUNA
               </span>
             </Link>

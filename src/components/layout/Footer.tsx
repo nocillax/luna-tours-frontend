@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -9,9 +10,15 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <span className="text-[var(--earth-accent)] text-xl font-bold mr-1">
-                ●
+                <Image
+                  src="/logo/luna-light.svg"
+                  alt="Luna Logo"
+                  width={24}
+                  height={24}
+                  className="mr-1"
+                />
               </span>
-              <span className="text-[var(--earth-highlight)] text-xl font-bold uppercase tracking-wider font-montserrat">
+              <span className="text-[var(--earth-highlight)] text-xl font-findel font-bold uppercase tracking-wider font-montserrat">
                 LUNA
               </span>
             </div>
@@ -168,7 +175,7 @@ export default function Footer() {
                   />
                 </svg>
                 <span className="text-[var(--earth-light)]">
-                  123 Adventure Street, Tokyo, Japan
+                  Udagawacho Shibuya, Tokyo, Japan
                 </span>
               </li>
               <li className="flex items-start">

@@ -49,7 +49,7 @@ export const carouselImages: CarouselImage[] = [
   {
     id: 1,
     slug: "tokyo",
-    src: "/tokyo1.jpg",
+    src: "/images/tokyo1.jpg",
     alt: "Visit Tokyo",
     title: "VISIT TOKYO",
     subtitle:
@@ -60,7 +60,7 @@ export const carouselImages: CarouselImage[] = [
   {
     id: 2,
     slug: "kyoto",
-    src: "/kyoto1.jpg",
+    src: "/images/kyoto1.jpg",
     alt: "Discover Kyoto",
     title: "DISCOVER KYOTO",
     subtitle:
@@ -71,7 +71,7 @@ export const carouselImages: CarouselImage[] = [
   {
     id: 3,
     slug: "mount-fuji",
-    src: "/mount-fuji1.jpg",
+    src: "/images/mount-fuji1.jpg",
     alt: "Mount Fuji",
     title: "MOUNT FUJI",
     subtitle:
@@ -82,7 +82,7 @@ export const carouselImages: CarouselImage[] = [
   {
     id: 4,
     slug: "osaka",
-    src: "/osaka1.jpg",
+    src: "/images/osaka1.jpg",
     alt: "Experience Osaka",
     title: "EXPERIENCE OSAKA",
     subtitle:
@@ -120,9 +120,9 @@ export const toursData: Tour[] = [
     category: "City Exploration",
     coverImage: "/tokyo1.jpg",
     gallery: [
-      "/tokyo/tokyo-explorer/tour-1.jpg",
-      "/tokyo/tokyo-explorer/tour-2.jpg",
-      "/tokyo/tokyo-explorer/tour-3.jpg",
+      "/images/tokyo/tokyo-explorer/tour-1.jpg",
+      "/images/tokyo/tokyo-explorer/tour-2.jpg",
+      "/images/tokyo/tokyo-explorer/tour-3.jpg",
     ],
     includedServices: [
       "4 nights accommodation",
@@ -144,35 +144,35 @@ export const toursData: Tour[] = [
         title: "Arrival & Welcome",
         description:
           "Arrive at Narita or Haneda Airport, transfer to your hotel, and enjoy a welcome dinner.",
-        image: "/tokyo/tokyo-explorer/day-1.jpg",
+        image: "/images/tokyo/tokyo-explorer/day-1.jpg",
       },
       {
         day: 2,
         title: "Traditional Tokyo",
         description:
           "Visit Asakusa's Senso-ji Temple, the Tokyo National Museum, and the Imperial Palace Gardens.",
-        image: "/tokyo/tokyo-explorer/day-2.jpg",
+        image: "/images/tokyo/tokyo-explorer/day-2.jpg",
       },
       {
         day: 3,
         title: "Modern Tokyo",
         description:
           "Explore Shibuya Crossing, Harajuku's trendy shops, and the panoramic views from Tokyo Skytree.",
-        image: "/tokyo/tokyo-explorer/day-3.jpg",
+        image: "/images/tokyo/tokyo-explorer/day-3.jpg",
       },
       {
         day: 4,
         title: "Cultural Immersion",
         description:
           "Participate in a traditional tea ceremony, visit Meiji Shrine, and explore Akihabara.",
-        image: "/tokyo/tokyo-explorer/day-4.jpg",
+        image: "/images/tokyo/tokyo-explorer/day-4.jpg",
       },
       {
         day: 5,
         title: "Departure",
         description:
           "Free time for shopping or optional activities before your airport transfer.",
-        image: "/tokyo/tokyo-explorer/day-5.jpg",
+        image: "/images/tokyo/tokyo-explorer/day-5.jpg",
       },
     ],
     locations: [
@@ -219,9 +219,9 @@ export const toursData: Tour[] = [
     category: "Cultural Tours",
     coverImage: "/kyoto1.jpg",
     gallery: [
-      "/kyoto/kyoto-cultural-journey/tour-1.jpg",
-      "/kyoto/kyoto-cultural-journey/tour-2.jpg",
-      "/kyoto/kyoto-cultural-journey/tour-3.jpg",
+      "/images/kyoto/kyoto-cultural-journey/tour-1.jpg",
+      "/images/kyoto/kyoto-cultural-journey/tour-2.jpg",
+      "/images/kyoto/kyoto-cultural-journey/tour-3.jpg",
     ],
     includedServices: [
       "3 nights traditional ryokan accommodation",
@@ -243,27 +243,27 @@ export const toursData: Tour[] = [
         title: "Arrival in Kyoto",
         description:
           "Arrive in Kyoto, check into your ryokan, and enjoy an evening orientation walk.",
-        image: "/kyoto/kyoto-cultural-journey/day-1.jpg",
+        image: "/images/kyoto/kyoto-cultural-journey/day-1.jpg",
       },
       {
         day: 2,
         title: "Eastern Kyoto Temples",
         description:
           "Visit Kiyomizu-dera Temple, Sanjusangendo Hall, and explore Gion district.",
-        image: "/kyoto/kyoto-cultural-journey/day-2.jpg",
+        image: "/images/kyoto/kyoto-cultural-journey/day-2.jpg",
       },
       {
         day: 3,
         title: "Golden Pavilion & Zen Gardens",
         description:
           "Explore Kinkaku-ji (Golden Pavilion), Ryoan-ji Zen garden, and Arashiyama Bamboo Grove.",
-        image: "/kyoto/kyoto-cultural-journey/day-3.jpg",
+        image: "/images/kyoto/kyoto-cultural-journey/day-3.jpg",
       },
       {
         day: 4,
         title: "Fushimi Inari & Departure",
         description: "Morning visit to Fushimi Inari Shrine before departure.",
-        image: "/kyoto/kyoto-cultural-journey/day-4.jpg",
+        image: "/images/kyoto/kyoto-cultural-journey/day-4.jpg",
       },
     ],
     locations: ["Kyoto", "Gion", "Arashiyama", "Higashiyama", "Fushimi"],
@@ -303,9 +303,9 @@ export const toursData: Tour[] = [
     category: "Natural Wonders",
     coverImage: "/mount-fuji1.jpg",
     gallery: [
-      "/mount-fuji/mount-fuji-adventure/tour-1.jpg",
-      "/mount-fuji/mount-fuji-adventure/tour-2.jpg",
-      "/mount-fuji/mount-fuji-adventure/tour-3.jpg",
+      "/images/mount-fuji/mount-fuji-adventure/tour-1.jpg",
+      "/images/mount-fuji/mount-fuji-adventure/tour-2.jpg",
+      "/images/mount-fuji/mount-fuji-adventure/tour-3.jpg",
     ],
     includedServices: [
       "2 nights accommodation",
@@ -327,21 +327,21 @@ export const toursData: Tour[] = [
         title: "Tokyo to Fuji Five Lakes",
         description:
           "Travel from Tokyo to Lake Kawaguchi, visit Chureito Pagoda for iconic Mt. Fuji views.",
-        image: "/mount-fuji/mount-fuji-adventure/day-1.jpg",
+        image: "/images/mount-fuji/mount-fuji-adventure/day-1.jpg",
       },
       {
         day: 2,
         title: "Hiking Day",
         description:
           "Guided hike in the Aokigahara Forest and along the shores of Lake Saiko.",
-        image: "/mount-fuji/mount-fuji-adventure/day-2.jpg",
+        image: "/images/mount-fuji/mount-fuji-adventure/day-2.jpg",
       },
       {
         day: 3,
         title: "Hot Springs & Return",
         description:
           "Morning hot spring experience, visit to Oshino Hakkai springs, and return to Tokyo.",
-        image: "/mount-fuji/mount-fuji-adventure/day-3.jpg",
+        image: "/images/mount-fuji/mount-fuji-adventure/day-3.jpg",
       },
     ],
     locations: [
@@ -389,9 +389,9 @@ export const toursData: Tour[] = [
     category: "Food & Cuisine",
     coverImage: "/osaka1.jpg",
     gallery: [
-      "/osaka/osaka-food-adventure/tour-1.jpg",
-      "/osaka/osaka-food-adventure/tour-2.jpg",
-      "/osaka/osaka-food-adventure/tour-3.jpg",
+      "/images/osaka/osaka-food-adventure/tour-1.jpg",
+      "/images/osaka/osaka-food-adventure/tour-2.jpg",
+      "/images/osaka/osaka-food-adventure/tour-3.jpg",
     ],
     includedServices: [
       "2 nights accommodation",
@@ -414,21 +414,21 @@ export const toursData: Tour[] = [
         title: "Arrival & Street Food Tour",
         description:
           "Arrive in Osaka and check into your hotel. Evening guided tour through Dotonbori, sampling iconic Osaka street foods like takoyaki, okonomiyaki, and kushikatsu.",
-        image: "/osaka/osaka-food-adventure/day-1.jpg",
+        image: "/images/osaka/osaka-food-adventure/day-1.jpg",
       },
       {
         day: 2,
         title: "Markets & Cooking Class",
         description:
           "Morning visit to Kuromon Market to discover fresh ingredients, followed by a hands-on cooking class to learn authentic Osaka recipes. Afternoon visit to Osaka Castle.",
-        image: "/osaka/osaka-food-adventure/day-2.jpg",
+        image: "/images/osaka/osaka-food-adventure/day-2.jpg",
       },
       {
         day: 3,
         title: "Modern Osaka & Departure",
         description:
           "Explore modern Osaka with visits to Umeda Sky Building and shopping districts. Final gourmet lunch before departure.",
-        image: "/osaka/osaka-food-adventure/day-3.jpg",
+        image: "/images/osaka/osaka-food-adventure/day-3.jpg",
       },
     ],
     locations: [
