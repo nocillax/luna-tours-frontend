@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { toursData, Tour } from "@/lib/data";
 import TourGallery from "@/components/tours/TourGallery";

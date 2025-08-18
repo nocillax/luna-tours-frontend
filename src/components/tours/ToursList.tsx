@@ -1,5 +1,5 @@
 import React from "react";
-import TourCard from "@/components/ui/TourCard";
+import TourCard from "@/components/tours/TourCard";
 import { Tour } from "@/lib/data";
 
 interface ToursListProps {

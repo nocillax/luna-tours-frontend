@@ -1,10 +1,10 @@
 // src/pages/contact.tsx
 import { GetServerSideProps } from "next";
-import PageHero from "@/components/ui/ContactHero";
-import ContactForm from "@/components/ui/ContactForm";
-import OfficeLocationCard from "@/components/ui/OfficeLocationCard";
-import BusinessHours from "@/components/ui/BusinessHours";
-import FAQ from "@/components/ui/FAQ";
+import PageHero from "@/components/contact/ContactHero";
+import ContactForm from "@/components/contact/ContactForm";
+import OfficeLocationCard from "@/components/contact/OfficeLocationCard";
+import BusinessHours from "@/components/contact/BusinessHours";
+import FAQ from "@/components/contact/FAQ";
 
 // Define types for our server-side props
 interface ContactPageProps {

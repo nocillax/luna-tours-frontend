@@ -1,6 +1,6 @@
 import React from "react";
 import { Tour } from "@/lib/data";
-import ItineraryDayItem from "@/components/ui/ItineraryDayItem";
+import ItineraryDayItem from "@/components/tours/ItineraryDayItem";
 
 interface TourItineraryTabProps {
   tour: Tour;
