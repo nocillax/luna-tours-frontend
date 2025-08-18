@@ -28,7 +28,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/page.tsx.bak",
-    "src/app/page.tsx.bak"
+    "src/app/page.tsx.bak",
+    "src/app/contact/page.tsx.bak",
+    "src/app/about/page.tsx.bak"
   ],
   "exclude": ["node_modules"]
 }

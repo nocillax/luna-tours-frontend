@@ -93,7 +93,7 @@ export default function HomePage({
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
-            <div className="bg-[var(--earth-dark)]/30 p-8 rounded-lg shadow-md border border-[var(--earth-light)] relative">
+            <div className="bg-[var(--earth-dark)]/20 p-8 rounded-lg shadow-md border border-[var(--earth-light)] relative">
               <div className="text-[var(--earth-accent)] text-4xl absolute -top-5 left-8">
                 "
               </div>
@@ -116,7 +116,7 @@ export default function HomePage({
             </div>
 
             {/* Testimonial 2 */}
-            <div className="bg-[var(--earth-dark)]/30 p-8 rounded-lg shadow-md border border-[var(--earth-light)] relative">
+            <div className="bg-[var(--earth-dark)]/20 p-8 rounded-lg shadow-md border border-[var(--earth-light)] relative">
               <div className="text-[var(--earth-accent)] text-4xl absolute -top-5 left-8">
                 "
               </div>
@@ -137,7 +137,7 @@ export default function HomePage({
             </div>
 
             {/* Testimonial 3 */}
-            <div className="bg-[var(--earth-dark)]/30 p-8 rounded-lg shadow-md border border-[var(--earth-light)] relative">
+            <div className="bg-[var(--earth-dark)]/20 p-8 rounded-lg shadow-md border border-[var(--earth-light)] relative">
               <div className="text-[var(--earth-accent)] text-4xl absolute -top-5 left-8">
                 "
               </div>

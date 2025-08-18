@@ -1,61 +1,23 @@
-"use client";
-
+// src/components/ui/ContactForm.tsx
 import { useState, FormEvent } from "react";
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  phone?: string;
-  subject?: string;
-  message?: string;
-}
-
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    subject: "",
     message: "",
   });
 
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState("");
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-    }
-
-    if (formData.phone && !/^[0-9+\-\s]{10,15}$/.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -63,74 +25,116 @@ export default function ContactForm() {
     >
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
 
-    // Clear error when field is edited
-    if (errors[name as keyof FormErrors]) {
-      setErrors({ ...errors, [name]: undefined });
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
     }
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    };
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+      isValid = false;
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = "Invalid email format";
+        isValid = false;
+      }
+    }
+
+    // Phone validation (optional but validate if provided)
+    if (formData.phone.trim()) {
+      // This simpler regex accepts more phone formats
+      const phoneRegex = /^[+]?\d{10,15}$/;
+      if (!phoneRegex.test(formData.phone)) {
+        newErrors.phone = "Please enter a valid phone number (10-15 digits)";
+        isValid = false;
+      }
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+      isValid = false;
+    } else if (formData.message.trim().length < 20) {
+      newErrors.message = "Message must be at least 20 characters";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (validateForm()) {
+      setIsSubmitting(true);
 
-    setIsSubmitting(true);
-    setSubmitError("");
-
-    try {
       // Simulate API call with timeout
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // For demonstration purposes, we're just showing success
-      // In a real app, you'd send the data to a backend
-      console.log("Form submitted:", formData);
-
-      setSubmitSuccess(true);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-
-      // Reset success message after 5 seconds
       setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    } catch (error) {
-      setSubmitError(
-        "There was an error submitting the form. Please try again."
-      );
-    } finally {
-      setIsSubmitting(false);
+        setIsSubmitting(false);
+        setSubmitSuccess(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      }, 1500);
     }
   };
+
+  if (submitSuccess) {
+    return (
+      <div className="bg-[var(--earth-accent)] rounded-lg p-6 mb-8">
+        <h3 className="text-[var(--earth-darkest)] font-semibold text-lg mb-2">
+          Thank you for your message!
+        </h3>
+        <p className="text-[var(--earth-darkest)]">
+          We've received your inquiry and will respond within 24-48 hours.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {submitSuccess && (
-        <div className="bg-green-50 border border-green-200 text-green-700 p-4 rounded">
-          Thank you for your message! We will get back to you soon.
-        </div>
-      )}
-
-      {submitError && (
-        <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded">
-          {submitError}
-        </div>
-      )}
-
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-[var(--earth-accent)]"
         >
-          Name *
+          Your Name*
         </label>
         <input
           type="text"
@@ -138,9 +142,11 @@ export default function ContactForm() {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${
-            errors.name ? "border-red-300" : ""
-          }`}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.name
+              ? "border-red-300 focus:border-red-500 focus:ring-red-500"
+              : "border-gray-300 focus:border-[var(--earth-accent)] focus:ring-[var(--earth-accent)]"
+          } shadow-sm py-2 px-3 focus:outline-none focus:ring-2`}
         />
         {errors.name && (
           <p className="mt-1 text-sm text-red-600">{errors.name}</p>
@@ -150,9 +156,9 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-[var(--earth-accent)]"
         >
-          Email *
+          Email Address*
         </label>
         <input
           type="email"
@@ -160,9 +166,11 @@ export default function ContactForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${
-            errors.email ? "border-red-300" : ""
-          }`}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.email
+              ? "border-red-300 focus:border-red-500 focus:ring-red-500"
+              : "border-gray-300 focus:border-[var(--earth-accent)] focus:ring-[var(--earth-accent)]"
+          } shadow-sm py-2 px-3 focus:outline-none focus:ring-2`}
         />
         {errors.email && (
           <p className="mt-1 text-sm text-red-600">{errors.email}</p>
@@ -172,9 +180,9 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="phone"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-[var(--earth-accent)]"
         >
-          Phone Number
+          Phone Number (optional)
         </label>
         <input
           type="tel"
@@ -182,9 +190,11 @@ export default function ContactForm() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${
-            errors.phone ? "border-red-300" : ""
-          }`}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.phone
+              ? "border-red-300 focus:border-red-500 focus:ring-red-500"
+              : "border-gray-300 focus:border-[var(--earth-accent)] focus:ring-[var(--earth-accent)]"
+          } shadow-sm py-2 px-3 focus:outline-none focus:ring-2`}
         />
         {errors.phone && (
           <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
@@ -193,32 +203,10 @@ export default function ContactForm() {
 
       <div>
         <label
-          htmlFor="subject"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Subject
-        </label>
-        <select
-          id="subject"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-        >
-          <option value="">Select a subject</option>
-          <option value="General Inquiry">General Inquiry</option>
-          <option value="Tour Booking">Tour Booking</option>
-          <option value="Feedback">Feedback</option>
-          <option value="Partnership">Partnership</option>
-        </select>
-      </div>
-
-      <div>
-        <label
           htmlFor="message"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-[var(--earth-accent)]"
         >
-          Message *
+          Your Message*
         </label>
         <textarea
           id="message"
@@ -226,9 +214,11 @@ export default function ContactForm() {
           rows={5}
           value={formData.message}
           onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 ${
-            errors.message ? "border-red-300" : ""
-          }`}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.message
+              ? "border-red-300 focus:border-red-500 focus:ring-red-500"
+              : "border-gray-300 focus:border-[var(--earth-accent)] focus:ring-[var(--earth-accent)]"
+          } shadow-sm py-2 px-3 focus:outline-none focus:ring-2`}
         />
         {errors.message && (
           <p className="mt-1 text-sm text-red-600">{errors.message}</p>
@@ -239,9 +229,37 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors disabled:bg-blue-400"
+          className={`w-full bg-[var(--earth-accent)] hover:bg-[var(--earth-medium)] hover:text-[var(--earth-accent)] text-[var(--earth-darkest)] font-bold py-3 px-4 rounded-md transition duration-200 flex justify-center items-center ${
+            isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+          }`}
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? (
+            <>
+              <svg
+                className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Sending...
+            </>
+          ) : (
+            "Send Message"
+          )}
         </button>
       </div>
     </form>
