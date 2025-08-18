@@ -35,7 +35,7 @@ export default function AboutJapan() {
           <div className="order-1 lg:order-2">
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/japan-landscape.jpg"
+                src="/images/japan-landscape.jpg"
                 alt="Japanese landscape with Mount Fuji"
                 fill
                 className="object-cover"
