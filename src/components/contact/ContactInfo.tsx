@@ -1,8 +1,4 @@
-import {
-  PhoneIcon,
-  EnvelopeIcon,
-  ClockIcon,
-} from "@heroicons/react/24/outline";
+import { PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 
 // contact information component with office details
 export default function ContactInfo() {
