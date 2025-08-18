@@ -4,7 +4,7 @@ import { PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 export default function ContactInfo() {
   return (
     <div className="lg:col-span-1">
-      <div className="bg-[var(--earth-dark)]/30 rounded-lg p-8 h-full">
+      <div className="bg-[var(--earth-dark)]/20 rounded-lg p-8 h-full">
         <h2 className="text-2xl font-bold text-[var(--earth-highlight)] font-montserrat mb-6">
           Get In Touch
         </h2>

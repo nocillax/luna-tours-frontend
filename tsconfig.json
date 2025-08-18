@@ -33,7 +33,8 @@
     "src/app/about/page.tsx.bak",
     "src/app/tours/page.tsx.bak",
     "src/app/tours/[slug]/page.tsx.bak",
-    "src/components/contact/ContactHero.tsx.bak"
+    "src/components/contact/ContactHero.tsx.bak",
+    "src/app/layout.tsx.bak"
   ],
   "exclude": ["node_modules"]
 }

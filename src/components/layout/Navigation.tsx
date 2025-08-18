@@ -81,13 +81,13 @@ export default function Navigation() {
                 Tours
               </Link>
               <Link
-                href="/gallery"
+                href="#"
                 className="hover:text-[var(--earth-accent)] transition-colors uppercase text-sm tracking-wider"
               >
                 Gallery
               </Link>
               <Link
-                href="/reviews"
+                href="#"
                 className="hover:text-[var(--earth-accent)] transition-colors uppercase text-sm tracking-wider"
               >
                 Reviews
@@ -113,7 +113,7 @@ export default function Navigation() {
             <button
               onClick={toggleMenu}
               type="button"
-              className="bg-[var(--earth-dark)] inline-flex items-center justify-center p-2 rounded-md text-[var(--earth-highlight)] hover:text-[var(--earth-accent)] hover:bg-[var(--earth-medium)] focus:outline-none"
+              className="bg-[var(--earth-accent)] inline-flex items-center justify-center p-2 rounded-md text-[var(--earth-darkest)] hover:text-[var(--earth-accent)] hover:bg-[var(--earth-medium)] focus:outline-none"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -153,13 +153,13 @@ export default function Navigation() {
             Tours
           </Link>
           <Link
-            href="/gallery"
+            href="#"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
           >
             Gallery
           </Link>
           <Link
-            href="/reviews"
+            href="#"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
           >
             Reviews
