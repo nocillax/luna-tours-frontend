@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌕 Luna Tours – Japanese Travel Experience
 
-## Getting Started
+Luna Tours is a responsive travel website showcasing immersive tour packages across Japan — from the vibrant streets of Tokyo to the serene temples of Kyoto and the scenic beauty of Mount Fuji.
 
-First, run the development server:
+![Luna Tours Banner](/public/japan-landscape.jpg)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Responsive design optimized for mobile, tablet, and desktop
+- Dynamic tour pages with itineraries and details
+- Interactive carousel and image galleries (Swiper.js)
+- Contact form with validation
+- Clean, minimal, earth-toned design system
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+**Frameworks & Languages**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js 15](https://nextjs.org/) – React framework
+- [React 19](https://react.dev/) – UI library
+- [TypeScript 5](https://www.typescriptlang.org/) – Strongly typed JavaScript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Styling**
 
-## Deploy on Vercel
+- [Tailwind CSS 4](https://tailwindcss.com/) – Utility-first CSS framework
+- Custom CSS variables for a consistent earth-toned theme
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**UI Libraries**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Swiper.js](https://swiperjs.com/) – Carousels & sliders
+- [Heroicons](https://heroicons.com/) – SVG icons
+
+---
+
+## 📦 Dependencies
+
+**Production**
+
+- `next` (v15.x)
+- `react` (v19.x)
+- `react-dom` (v19.x)
+- `swiper` (v11.x)
+- `@heroicons/react` (v2.x)
+
+**Development**
+
+- `typescript` (v5.x)
+- `tailwindcss` (v4.x)
+- `eslint` & `eslint-config-next`
+- `@types/react`, `@types/node`, etc.
+
+---
+
+## ⚡ Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/raktch-frontend-assessment.git
+   cd raktch-frontend-assessment
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🎨 Design
+
+- **Color Palette**: Earth-toned custom CSS variables
+- **Typography**:
+  - _Findel_ (logo)
+  - _Montserrat_ (headings & buttons)
+  - System fonts (body text)
+
+---
+
+## 🌐 Pages
+
+- **Home** – Featured destinations
+- **Tours** – Browse all tour packages
+- **Tour Details** – Dynamic itinerary pages
+- **About** – Company background & mission
+- **Contact** – Contact form & info
+
+---
+
+## 🙏 Credits
+
+- Images from [Unsplash](https://unsplash.com/)
+- Icons by [Heroicons](https://heroicons.com/)
