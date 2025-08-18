@@ -209,7 +209,9 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                     )}
                     <span
                       className={`font-bold ${
-                        isActive ? "text-5xl" : "text-sm"
+                        isActive
+                          ? "text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+                          : "text-xs sm:text-sm"
                       }`}
                     >
                       {String(index + 1).padStart(2, "0")}

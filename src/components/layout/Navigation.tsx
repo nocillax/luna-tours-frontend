@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import {
   MagnifyingGlassIcon,
   Bars3Icon,
@@ -12,6 +13,8 @@ import {
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   // navbar scroll effect
   useEffect(() => {
@@ -27,8 +30,51 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Close menu if click is outside menu and outside the toggle button
+      const targetElement = event.target as Element;
+
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(targetElement) &&
+        !targetElement.closest('button[aria-controls="mobile-menu"]')
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add click event listener when menu is open
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  // close menu on route change
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsOpen(false);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  // handle link click to close menu
+  const handleLinkClick = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -115,7 +161,7 @@ export default function Navigation() {
               type="button"
               className="bg-[var(--earth-accent)] inline-flex items-center justify-center p-2 rounded-md text-[var(--earth-darkest)] hover:text-[var(--earth-accent)] hover:bg-[var(--earth-medium)] focus:outline-none"
               aria-controls="mobile-menu"
-              aria-expanded="false"
+              aria-expanded={isOpen}
             >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
@@ -130,6 +176,7 @@ export default function Navigation() {
 
       {/* mobile dropdown */}
       <div
+        ref={mobileMenuRef}
         className={`${isOpen ? "block" : "hidden"} md:hidden transition-all`}
         id="mobile-menu"
       >
@@ -137,36 +184,42 @@ export default function Navigation() {
           <Link
             href="/"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
+            onClick={handleLinkClick}
           >
             Home
           </Link>
           <Link
             href="/about"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
+            onClick={handleLinkClick}
           >
             About Us
           </Link>
           <Link
             href="/tours"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
+            onClick={handleLinkClick}
           >
             Tours
           </Link>
           <Link
             href="#"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
+            onClick={handleLinkClick}
           >
             Gallery
           </Link>
           <Link
             href="#"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
+            onClick={handleLinkClick}
           >
             Reviews
           </Link>
           <Link
             href="/contact"
             className="block px-3 py-2 rounded-md text-[var(--earth-highlight)] hover:bg-[var(--earth-dark)] hover:text-[var(--earth-accent)] text-sm font-medium uppercase"
+            onClick={handleLinkClick}
           >
             Contact
           </Link>
