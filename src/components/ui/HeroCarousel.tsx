@@ -151,7 +151,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
 
                     <Link
                       href={image.buttonLink}
-                      className="font-montserrat inline-flex items-center space-x-3 px-8 py-4 bg-[var(--earth-accent)] hover:bg-[var(--earth-medium)] text-[var(--earth-darkest)] rounded-sm transition duration-300 font-bold text-lg"
+                      className="font-montserrat inline-flex items-center space-x-3 px-8 py-4 bg-[var(--earth-accent)] hover:bg-[var(--earth-medium)] hover:text-[var(--earth-accent)] text-[var(--earth-darkest)] rounded-sm transition duration-300 font-bold text-lg"
                     >
                       <span>{image.buttonText}</span>
                       <svg
