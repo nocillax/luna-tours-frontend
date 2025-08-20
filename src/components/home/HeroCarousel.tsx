@@ -205,7 +205,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                     }`}
                   >
                     {isActive && (
-                      <div className="w-16 h-0.5 bg-[var(--earth-accent)] mr-3"></div>
+                      <div className="hidden sm:block w-10 h-0.5 bg-[var(--earth-accent)] mr-3"></div>
                     )}
                     <span
                       className={`font-bold ${

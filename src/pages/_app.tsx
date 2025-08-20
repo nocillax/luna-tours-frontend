@@ -1,6 +1,6 @@
 // src/pages/_app.tsx
 import type { AppProps } from "next/app";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import Head from "next/head";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
