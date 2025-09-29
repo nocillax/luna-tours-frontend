@@ -69,8 +69,8 @@ Luna Tours is a responsive travel website showcasing immersive tour packages acr
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/raktch-frontend-assessment.git
-   cd raktch-frontend-assessment
+   git clone https://github.com/your-username/luna-tours-frontend.git
+   cd luna-tours-frontend 
    ```
 
 2. Install dependencies:
